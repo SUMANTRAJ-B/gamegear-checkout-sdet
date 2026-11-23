@@ -24,3 +24,11 @@ Thumbs.db
 test-results/
 playwright-report/
 blob-report/
+
+.vercel
+.env*
+
+# Deliverables media binaries
+deliverables/*.mp4
+deliverables/*.mp3
+deliverables/source-recording/

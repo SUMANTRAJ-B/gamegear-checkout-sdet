@@ -1,0 +1,49 @@
+1
+00:00:00,500 --> 00:00:09,000
+Welcome to GameGear Signature Edition,
+a precision-focused gaming accessories storefront developed for the Fynd Hiring Hackathon.
+
+2
+00:00:09,200 --> 00:00:20,000
+GameGear presents two synthetic gaming products:
+the Arc M1 Gaming Mouse at ₹1,499, and the Forge TKL Mechanical Keyboard at ₹3,499.
+
+3
+00:00:20,200 --> 00:00:33,000
+Each product features custom technical vector artwork and an interactive inspection modal
+with three distinct views: isometric 3/4, top plan, and macro component details.
+
+4
+00:00:33,200 --> 00:00:46,000
+The shopping experience includes dynamic cart management, real-time quantity adjustments,
+and zero-floating-point financial calculations performed strictly in integer rupees.
+
+5
+00:00:46,200 --> 00:00:58,000
+Customers can inspect their order ledger, review unit totals,
+and proceed through a validated checkout protected by a synchronous double-submission lock.
+
+6
+00:00:58,200 --> 00:01:12,000
+The application rigorously prevents empty-cart checkout and rejects blank customer names.
+Placing an order generates a unique reference and a printable digital receipt.
+
+7
+00:01:12,200 --> 00:01:26,000
+Behind the storefront is a comprehensive browser automation harness built with Python,
+pytest, and Playwright, featuring 21 passing automated tests with zero flaky steps.
+
+8
+00:01:26,200 --> 00:01:38,000
+The suite verifies mandatory user journeys, regression edge cases, accessibility standards,
+theme persistence, and multi-viewport responsiveness with genuine screenshot evidence.
+
+9
+00:01:38,200 --> 00:01:48,000
+GameGear is a pure client-side prototype using synthetic demonstration data.
+The complete source code, test plan, and execution reports are published openly on GitHub.
+
+10
+00:01:48,200 --> 00:01:56,000
+GameGear Signature Edition.
+Designed for control. Engineered for confidence.

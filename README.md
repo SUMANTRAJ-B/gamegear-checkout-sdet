@@ -6,6 +6,7 @@
 [![Pytest Suite](https://img.shields.io/badge/pytest-21%20passed-success.svg)](#16-automated-testing-instructions)
 [![Python](https://img.shields.io/badge/python-3.13-blue.svg)](#10-prerequisites)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Vercel Production](https://img.shields.io/badge/Vercel-Production%20Active-black?logo=vercel)](https://gamegear-signature-edition.vercel.app)
 
 ---
 
@@ -14,6 +15,7 @@
 
 - **Central Concept:** *"Precision is a feeling."*
 - **Role Alignment:** SDET Intern
+- **Production Live URL:** [https://gamegear-signature-edition.vercel.app](https://gamegear-signature-edition.vercel.app)
 - **Core Mission:** Deliver a high-fidelity single-page storefront that embodies thoughtful industrial design principles while maintaining rigorous software quality standards, deterministic financial arithmetic, synchronous race condition guards, and reproducible visual testing evidence.
 
 ---
