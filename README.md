@@ -224,13 +224,26 @@ All screenshots in [`reports/evidence/`](reports/evidence/) reflect authentic li
 
 ---
 
-## 11. Known Limitations
+## 11. Video Demonstration & Media Deliverables
+
+A complete, high-definition (1080p @ 30fps) walkthrough of the production deployment narrated with neural AI voiceover has been produced for the Fynd Hiring Hackathon evaluation:
+
+- **Production Walkthrough Video:** [`deliverables/gamegear-demo.mp4`](deliverables/gamegear-demo.mp4) (Full HD 1080p, burned-in subtitles, 02:11.98 duration)
+- **Synchronized Subtitles:** [`deliverables/gamegear-demo.srt`](deliverables/gamegear-demo.srt)
+- **Narration Script (10 Sections):** [`deliverables/voiceover-script.md`](deliverables/voiceover-script.md)
+- **Custom Thumbnail:** [`deliverables/gamegear-thumbnail.png`](deliverables/gamegear-thumbnail.png)
+- **Video Production Report:** [`deliverables/video-production-report.md`](deliverables/video-production-report.md)
+- **Vercel Deployment Report:** [`deliverables/deployment-report.md`](deliverables/deployment-report.md)
+
+---
+
+## 12. Known Limitations
 - **Synthetic Frontend Demonstration:** GameGear is an SDET client prototype. No real commercial transactions, payment gateway integrations, or persisted remote databases are present.
 - **In-Memory Cart State:** In accordance with the no-backend requirement, refreshing the browser restarts the cart in memory (theme preferences persist via `localStorage`).
 
 ---
 
-## 12. GitHub Repository Information
+## 13. GitHub Repository Information
 - **Repository URL:** [https://github.com/SUMANTRAJ-B/gamegear-checkout-sdet](https://github.com/SUMANTRAJ-B/gamegear-checkout-sdet)
 - **Visibility:** **PUBLIC**
 - **Branch:** `main`
