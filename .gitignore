@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+.env
+venv/
+.venv/
+ENV/
+
+# Pytest / Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local & OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/

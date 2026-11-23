@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameGear — Minimal Gaming Accessories Checkout</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <!-- Header / Brand Identity -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      <div class="brand">
+        <span class="brand-logo" aria-hidden="true">GG</span>
+        <h1 class="brand-name">GAMEGEAR</h1>
+      </div>
+      <div class="tagline">Precision Hardware. Pure Performance.</div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="hero-title">
+    <div class="hero-container">
+      <h2 id="hero-title" class="hero-title">Engineered for Competition</h2>
+      <p class="hero-subtitle">
+        Carefully designed gaming peripherals built for speed, durability, and tactical accuracy.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Storefront Application -->
+  <main class="main-content" id="main-content">
+    <div class="layout-grid">
+      
+      <!-- Left Column: Product Catalogue & Shopping Cart -->
+      <div class="catalogue-column">
+        <!-- Product Catalogue -->
+        <section class="catalogue-section" aria-labelledby="catalogue-heading">
+          <div class="section-header">
+            <h2 id="catalogue-heading">Available Accessories</h2>
+            <span class="badge">Official Lineup</span>
+          </div>
+          <div id="product-grid" class="product-grid" role="region" aria-label="Product Catalogue">
+            <!-- Dynamic products injected here -->
+          </div>
+        </section>
+
+        <!-- Shopping Cart -->
+        <section class="cart-section" aria-labelledby="cart-heading">
+          <div class="section-header">
+            <h2 id="cart-heading">Shopping Cart</h2>
+            <span id="cart-item-count-badge" class="badge">0 items</span>
+          </div>
+
+          <div id="cart-container" class="cart-container" role="region" aria-label="Cart Items">
+            <!-- Dynamic cart items or empty state injected here -->
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Column: Order Summary & Checkout -->
+      <div class="checkout-column">
+        <section class="checkout-section" aria-labelledby="checkout-heading">
+          <div class="section-header">
+            <h2 id="checkout-heading">Order Summary &amp; Checkout</h2>
+          </div>
+
+          <!-- Order Summary Breakdown -->
+          <div class="summary-card" aria-labelledby="summary-card-heading">
+            <h3 id="summary-card-heading" class="summary-title">Order Breakdown</h3>
+            <div id="summary-breakdown" class="summary-breakdown">
+              <div class="summary-empty-msg" id="summary-empty-msg">No items in cart</div>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-row total-row">
+              <span class="total-label">Total Amount:</span>
+              <span class="total-value" id="order-total" aria-live="polite">₹0</span>
+            </div>
+            <div class="summary-row qty-row">
+              <span class="qty-label">Total Units:</span>
+              <span class="qty-value" id="order-total-qty">0</span>
+            </div>
+          </div>
+
+          <!-- Customer Information & Checkout Form -->
+          <form id="checkout-form" class="checkout-form" novalidate>
+            <div class="form-group">
+              <label for="customer-name" class="form-label">
+                Customer Name <span class="required" aria-hidden="true">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="customer-name" 
+                name="customerName" 
+                class="form-input" 
+                placeholder="e.g. Alex Morgan"
+                autocomplete="name"
+                aria-required="true"
+                aria-describedby="validation-message-area"
+              >
+            </div>
+
+            <!-- Validation Messages Area -->
+            <div 
+              id="validation-message-area" 
+              class="validation-message-area" 
+              role="alert" 
+              aria-live="assertive"
+            >
+              <!-- Error message injected here if validation fails -->
+            </div>
+
+            <!-- Checkout Action -->
+            <button 
+              type="submit" 
+              id="place-order-btn" 
+              class="btn btn-primary btn-block"
+            >
+              Place Order
+            </button>
+          </form>
+
+          <!-- Order Confirmation Area -->
+          <div 
+            id="confirmation-section" 
+            class="confirmation-section" 
+            role="region" 
+            aria-label="Order Confirmation" 
+            style="display: none;"
+          >
+            <!-- Confirmation details injected here upon valid checkout -->
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Live Announcer Region for screen readers -->
+  <div id="sr-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <p>&copy; 2026 GameGear Storefront — SDET Engineering Demonstration. Synthetic test data only.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
