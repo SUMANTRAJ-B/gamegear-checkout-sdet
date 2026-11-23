@@ -2,8 +2,8 @@
 
 **Project Name:** GameGear — Minimal Gaming Accessories Checkout  
 **Track:** Fynd Hiring Hackathon 2026 | SDET Intern Track  
-**Report Generated:** 2026-11-23 19:03:11  
-**Execution Duration:** 7.22 seconds  
+**Report Generated:** 2026-11-23 19:05:25  
+**Execution Duration:** 7.08 seconds  
 **Overall Status:** **PASSED**
 
 ---
@@ -38,15 +38,15 @@
 
 | Test Case Name | Duration (s) | Status |
 | :--- | :--- | :--- |
-| `test_mandatory_1_successful_checkout` | 1.98s | ✅ PASSED |
+| `test_mandatory_1_successful_checkout` | 1.95s | ✅ PASSED |
 | `test_mandatory_2_required_field_validation` | 0.31s | ✅ PASSED |
-| `test_mandatory_3_quantity_calculation` | 0.26s | ✅ PASSED |
+| `test_mandatory_3_quantity_calculation` | 0.24s | ✅ PASSED |
 | `test_regression_empty_cart_submission_blocked` | 0.20s | ✅ PASSED |
 | `test_regression_rapid_double_click_duplicate_prevention` | 0.30s | ✅ PASSED |
 | `test_regression_product_removal` | 0.24s | ✅ PASSED |
 | `test_regression_quantity_minimum_bound` | 0.20s | ✅ PASSED |
 | `test_regression_add_existing_product_increments_quantity` | 0.23s | ✅ PASSED |
-| `test_regression_multi_product_calculation` | 1.39s | ✅ PASSED |
+| `test_regression_multi_product_calculation` | 1.33s | ✅ PASSED |
 
 ---
 
