@@ -2,7 +2,7 @@
 
 **Project:** GameGear — Signature Edition // Equipment Studio  
 **Track:** Fynd Hiring Hackathon 2026 | SDET Intern Track  
-**Tester:** QA Automation Engineer / SDET Intern  
+**Tester:** SDET Intern  
 **Execution Environment:** Chromium Webview / Chrome for Testing 159.0  
 **Application URL:** `http://127.0.0.1:4173`  
 **Execution Date:** 2026-11-23 20:21 IST  
@@ -72,7 +72,7 @@ In accordance with Section 11 of the Fynd Hiring Hackathon requirements, manual 
   - **Generated Order Reference:** `GG-XXXXXXXX` pattern matching.
 - The confirmation card accurately displayed:
   - Customer Name: `"Rapid Clicker"`
-  - Total Paid: `₹1,499`
+  - Order Total: `₹1,499`
   - Items Ordered: `1 units`
   - Formatted receipt timestamp
 - The checkout form and Place Order button were synchronously removed from view upon initial submission acceptance, physically and logically barring duplicate order records from being created.

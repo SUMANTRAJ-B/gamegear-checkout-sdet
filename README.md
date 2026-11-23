@@ -13,7 +13,7 @@
 **GAMEGEAR — SIGNATURE EDITION** is a premium gaming accessories storefront prototype and comprehensive browser test engineering showcase. Built for the **Fynd Hiring Hackathon 2026 (SDET Intern Track)**, the application combines an industrial equipment studio aesthetic with exhaustive client-side verification and 21 automated browser tests in Playwright.
 
 - **Central Concept:** *"Precision is a feeling."*
-- **Role Alignment:** SDET Intern / QA Automation Engineer
+- **Role Alignment:** SDET Intern
 - **Core Mission:** Deliver a high-fidelity single-page storefront that embodies thoughtful industrial design principles while maintaining rigorous software quality standards, deterministic financial arithmetic, synchronous race condition guards, and reproducible visual testing evidence.
 
 ---
@@ -72,7 +72,7 @@ The application features exactly two synthetic hardware peripherals with central
 4. **Resilient Validation & Synchronous Guard:**
    - Required customer name input (whitespace trimmed, empty values blocked).
    - Preserves customer name and cart contents upon validation failure.
-   - Synchronous submission lock preventing duplicate confirmations during rapid clicks.
+   - Synchronous submission lock preventing duplicate order submissions during rapid clicks.
 5. **Digital Order Receipt:**
    - Formatted confirmation receipt with unique reference (`GG-XXXXXXXX`), timestamp, and allocated equipment.
    - Dedicated "Print Receipt" (`window.print()`) and "Start New Order" reset actions.
@@ -93,7 +93,7 @@ The application features exactly two synthetic hardware peripherals with central
 Currency calculations in GameGear are performed strictly using integer rupee units rather than IEEE-754 floating-point numbers. Floating-point arithmetic introduces well-documented precision anomalies (e.g., `0.1 + 0.2 = 0.30000000000000004`). By storing and summing prices as pure integers and formatting via `Intl.NumberFormat`, rounding drift is eliminated across all quantity permutations.
 
 ### 2. Synchronous Duplicate-Submission Protection
-Rather than relying on asynchronous timeouts or debouncing delays (which leave race-condition windows open during rapid clicks), checkout submission immediately executes a synchronous lock (`isOrderProcessing = true; isOrderCompleted = true; placeOrderBtn.disabled = true;`) before releasing control to the JavaScript event loop. Any secondary click arriving in the microtask queue is immediately ignored.
+Rather than relying on asynchronous timeouts or debouncing delays (which leave race-condition windows open during rapid clicks), checkout submission immediately executes a synchronous lock (`isOrderProcessing = true; isOrderCompleted = true; placeOrderBtn.disabled = true;`) before releasing control to the JavaScript event loop. Any secondary click arriving in the microtask queue is immediately ignored, preventing duplicate order submissions.
 
 ### 3. Deliberate Framework-Free Architecture (No Backend)
 For an SDET demonstration, external backends, Node runtimes, and database services introduce operational complexity and non-deterministic network failure modes. Operating as a pure client-side architecture served via Python's standard-library `ThreadingHTTPServer` guarantees 100% offline reproducibility and predictable automation runs.
@@ -133,7 +133,7 @@ Automated tests automatically capture timestamped screenshot artifacts during ex
 | **REQ-18: Mobile Viewport Layout** | `styles.css::@media (max-width: 580px)` | `test_sdet_18_mobile_viewport_cart_interaction` | `mobile-storefront.png` |
 | **REQ-19: Keyboard Escape Dismissal** | `app.js::initKeyboardShortcuts` | `test_sdet_19_keyboard_escape_closes_modal` | Pytest report / XML |
 | **REQ-20: Order Reference Format** | `app.js::generateOrderReference` | `test_sdet_20_order_reference_format` | Pytest report / XML |
-| **REQ-21: Duplicate Order Prevention** | `app.js::handleCheckout` | `test_sdet_21_repeated_checkout_cannot_duplicate_confirmation` | Pytest report / XML |
+| **REQ-21: Duplicate Order Submission Prevention** | `app.js::handleCheckout` | `test_sdet_21_repeated_checkout_cannot_duplicate_confirmation` | Pytest report / XML |
 
 ---
 
@@ -198,7 +198,7 @@ tests/test_checkout.py::test_sdet_19_keyboard_escape_closes_modal PASSED        
 tests/test_checkout.py::test_sdet_20_order_reference_format PASSED                      [ 95%]
 tests/test_checkout.py::test_sdet_21_repeated_checkout_cannot_duplicate_confirmation PASSED [100%]
 
-============================= 21 passed in 11.80s =============================
+============================= 21 passed in 12.64s =============================
 ```
 
 - **Markdown Test Report:** [`reports/test-report.md`](reports/test-report.md)

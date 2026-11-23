@@ -31,6 +31,6 @@ tests/test_checkout.py::test_sdet_20_order_reference_format PASSED       [ 95%]
 tests/test_checkout.py::test_sdet_21_repeated_checkout_cannot_duplicate_confirmation PASSED [100%]
 
 - generated xml file: C:\Users\jhonp\Downloads\Fynd-Hackathon-Workspace\gamegear-checkout-sdet\reports\junit.xml -
-============================= 21 passed in 13.56s =============================
+============================= 21 passed in 12.64s =============================
 
 === STDERR ===

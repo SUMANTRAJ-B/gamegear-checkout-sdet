@@ -395,7 +395,7 @@ function renderCatalogue() {
     card.innerHTML = `
       <div class="card-top-meta">
         <span class="product-code">${product.code}</span>
-        <span>STUDIO HARDWARE</span>
+        <span>DEMO HARDWARE // SYNTHETIC DATA</span>
       </div>
 
       <div class="product-visual-wrapper" id="visual-wrapper-${product.id}" title="Click to inspect ${product.name}">

@@ -4,7 +4,7 @@
 **Document Version:** 3.0 (Signature Edition)  
 **Project:** GameGear Signature Edition // SDET Browser Automation Harness  
 **Track:** Fynd Hiring Hackathon 2026 | SDET Intern Track  
-**Author:** SDET Intern / QA Automation Engineer  
+**Author:** SDET Intern  
 **Date:** November 23, 2026  
 
 ---

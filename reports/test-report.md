@@ -2,8 +2,8 @@
 
 **Project Name:** GameGear — Minimal Gaming Accessories Checkout  
 **Track:** Fynd Hiring Hackathon 2026 | SDET Intern Track  
-**Report Generated:** 2026-11-23 20:23:11  
-**Execution Duration:** 15.60 seconds  
+**Report Generated:** 2026-11-23 20:39:55  
+**Execution Duration:** 14.72 seconds  
 **Overall Status:** **PASSED**
 
 ---
@@ -14,7 +14,7 @@
 | :--- | :--- |
 | **Operating System** | Windows 11 (AMD64) |
 | **Python Runtime** | 3.13.13 |
-| **Playwright Version** | Unknown |
+| **Playwright Version** | 1.65.2 |
 | **Browser Engine** | Chromium 159.0.8154.6 (Headless) |
 | **Test Runner** | pytest |
 | **Command Executed** | `C:\Users\jhonp\AppData\Local\Programs\Python\Python313\python.exe -m pytest --junitxml C:\Users\jhonp\Downloads\Fynd-Hackathon-Workspace\gamegear-checkout-sdet\reports\junit.xml -v C:\Users\jhonp\Downloads\Fynd-Hackathon-Workspace\gamegear-checkout-sdet\tests` |
@@ -38,27 +38,27 @@
 
 | Test Case Name | Duration (s) | Status |
 | :--- | :--- | :--- |
-| `test_mandatory_1_successful_checkout` | 1.96s | ✅ PASSED |
+| `test_mandatory_1_successful_checkout` | 1.99s | ✅ PASSED |
 | `test_mandatory_2_required_field_validation` | 0.42s | ✅ PASSED |
-| `test_mandatory_3_quantity_calculation` | 0.33s | ✅ PASSED |
+| `test_mandatory_3_quantity_calculation` | 0.35s | ✅ PASSED |
 | `test_regression_4_empty_cart_submission_blocked` | 1.17s | ✅ PASSED |
-| `test_regression_5_rapid_double_click_protection` | 0.48s | ✅ PASSED |
-| `test_regression_6_product_removal` | 0.40s | ✅ PASSED |
-| `test_regression_7_quantity_minimum_bound` | 0.34s | ✅ PASSED |
-| `test_regression_8_existing_product_increment` | 1.23s | ✅ PASSED |
-| `test_regression_9_multi_product_calculation` | 0.43s | ✅ PASSED |
-| `test_sdet_10_product_detail_panel_opens_and_closes` | 0.61s | ✅ PASSED |
-| `test_sdet_11_product_image_view_switching` | 0.78s | ✅ PASSED |
-| `test_sdet_12_cart_drawer_opens_and_closes` | 0.59s | ✅ PASSED |
+| `test_regression_5_rapid_double_click_protection` | 0.49s | ✅ PASSED |
+| `test_regression_6_product_removal` | 0.34s | ✅ PASSED |
+| `test_regression_7_quantity_minimum_bound` | 0.28s | ✅ PASSED |
+| `test_regression_8_existing_product_increment` | 1.20s | ✅ PASSED |
+| `test_regression_9_multi_product_calculation` | 0.42s | ✅ PASSED |
+| `test_sdet_10_product_detail_panel_opens_and_closes` | 0.62s | ✅ PASSED |
+| `test_sdet_11_product_image_view_switching` | 0.75s | ✅ PASSED |
+| `test_sdet_12_cart_drawer_opens_and_closes` | 0.60s | ✅ PASSED |
 | `test_sdet_13_theme_toggle_changes_interface` | 0.30s | ✅ PASSED |
 | `test_sdet_14_theme_choice_persists_after_reload` | 0.29s | ✅ PASSED |
-| `test_sdet_15_cart_count_matches_product_quantities` | 0.38s | ✅ PASSED |
-| `test_sdet_16_customer_info_survives_validation_failure` | 0.59s | ✅ PASSED |
-| `test_sdet_17_start_new_order_resets_state` | 0.36s | ✅ PASSED |
-| `test_sdet_18_mobile_viewport_cart_interaction` | 0.34s | ✅ PASSED |
-| `test_sdet_19_keyboard_escape_closes_modal` | 0.28s | ✅ PASSED |
-| `test_sdet_20_order_reference_format` | 0.31s | ✅ PASSED |
-| `test_sdet_21_repeated_checkout_cannot_duplicate_confirmation` | 1.88s | ✅ PASSED |
+| `test_sdet_15_cart_count_matches_product_quantities` | 0.37s | ✅ PASSED |
+| `test_sdet_16_customer_info_survives_validation_failure` | 0.27s | ✅ PASSED |
+| `test_sdet_17_start_new_order_resets_state` | 0.42s | ✅ PASSED |
+| `test_sdet_18_mobile_viewport_cart_interaction` | 0.35s | ✅ PASSED |
+| `test_sdet_19_keyboard_escape_closes_modal` | 0.29s | ✅ PASSED |
+| `test_sdet_20_order_reference_format` | 0.34s | ✅ PASSED |
+| `test_sdet_21_repeated_checkout_cannot_duplicate_confirmation` | 1.28s | ✅ PASSED |
 
 ---
 

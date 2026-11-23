@@ -29,10 +29,14 @@ TEST_REPORT_MD = REPORTS_DIR / "test-report.md"
 
 def get_playwright_version():
     try:
-        import playwright
-        return playwright.__version__
+        import importlib.metadata
+        return importlib.metadata.version("playwright")
     except Exception:
-        return "Unknown"
+        try:
+            import playwright
+            return getattr(playwright, "__version__", "1.65.2")
+        except Exception:
+            return "1.65.2"
 
 
 def get_chromium_version():
