@@ -1,28 +1,64 @@
 /**
- * GameGear — Minimal Gaming Accessories Checkout
- * Core Storefront & Cart Application Logic
+ * GameGear 2.0 — Premium Gaming Accessories Storefront
+ * Core Storefront, Cart, Theme & Interaction Engine
  * 
- * Demonstrates:
- * - Functional correctness and integer rupee arithmetic
- * - Strict form validation and state preservation
- * - Synchronous duplicate submission protection
- * - Accessible interactions with semantic live regions
+ * Features:
+ * - Pure integer arithmetic in rupees (₹)
+ * - Strict form validation with non-destructive state preservation
+ * - Synchronous duplicate submission prevention
+ * - Accessible Light/Dark theme manager with persistence
+ * - Interactive technical specifications disclosure
+ * - Toast notification feedback system
+ * - Responsive mobile navigation drawer
  */
 
 'use strict';
 
-// Fixed Synthetic Product Catalogue
+// Fixed Synthetic Product Catalogue with Technical Specifications
 const PRODUCTS = [
   {
     id: 'arc-m1-mouse',
     name: 'Arc M1 Gaming Mouse',
     category: 'Gaming Mouse',
-    description: 'Precision wireless gaming mouse with an ergonomic design.',
-    price: 1499, // Fixed integer rupees (no floats)
+    description: 'Precision wireless gaming mouse with ergonomic contours, optical microswitches, and zero-latency wireless connectivity.',
+    price: 1499, // Integer rupee representation
+    specs: [
+      { label: 'Sensor', val: 'PixArt 3395 Optical (26,000 DPI)' },
+      { label: 'Weight', val: '54g Ultralight Honeycomb-Free' },
+      { label: 'Switches', val: '100M Optical Microswitches' },
+      { label: 'Polling Rate', val: '1,000 Hz / 1ms Latency' },
+      { label: 'Battery', val: '80 Hours Continuous Play' }
+    ],
     svg: `
-      <svg class="product-svg-icon" viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="5" y="2" width="14" height="20" rx="7" />
-        <line x1="12" y1="6" x2="12" y2="10" />
+      <svg class="product-svg-icon" viewBox="0 0 240 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="mouseBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="var(--bg-card)" />
+            <stop offset="100%" stop-color="var(--bg-subtle)" />
+          </linearGradient>
+        </defs>
+        <!-- Main Chassis Silhouette -->
+        <path d="M 60 70 C 60 30, 95 18, 140 18 C 185 18, 205 45, 205 70 C 205 95, 185 122, 140 122 C 95 122, 60 110, 60 70 Z" 
+              fill="url(#mouseBodyGrad)" stroke="var(--border-subtle)" stroke-width="2" />
+        <!-- Ergonomic Palm Arc -->
+        <path d="M 85 70 C 85 45, 115 32, 145 32 C 175 32, 190 52, 190 70 C 190 88, 175 108, 145 108 C 115 108, 85 95, 85 70 Z" 
+              fill="none" stroke="var(--border-color)" stroke-width="1.2" stroke-dasharray="2 2" />
+        <!-- Primary Left / Right Button Split Line -->
+        <line x1="140" y1="18" x2="140" y2="60" stroke="var(--border-color)" stroke-width="1.8" />
+        <!-- Tactile Textured Scroll Wheel -->
+        <rect x="133" y="28" width="14" height="24" rx="4" fill="var(--bg-card-elevate)" stroke="var(--accent-lime)" stroke-width="1.5" />
+        <line x1="135" y1="34" x2="145" y2="34" stroke="var(--accent-lime)" stroke-width="1.2" />
+        <line x1="135" y1="40" x2="145" y2="40" stroke="var(--accent-lime)" stroke-width="1.2" />
+        <line x1="135" y1="46" x2="145" y2="46" stroke="var(--accent-lime)" stroke-width="1.2" />
+        <!-- DPI Cycle Button -->
+        <rect x="136" y="58" width="8" height="6" rx="2" fill="var(--border-subtle)" />
+        <!-- Side Thumb Buttons -->
+        <rect x="75" y="44" width="6" height="14" rx="2" fill="var(--accent-lime)" />
+        <rect x="75" y="62" width="6" height="14" rx="2" fill="var(--border-subtle)" />
+        <!-- Pure PTFE Skates Indicators -->
+        <path d="M 180 35 C 195 48, 195 92, 180 105" stroke="var(--border-color)" stroke-width="3" stroke-linecap="round" fill="none" />
+        <!-- Technical Accent Glow Point -->
+        <circle cx="160" cy="70" r="3" fill="var(--accent-lime)" />
       </svg>
     `
   },
@@ -30,20 +66,88 @@ const PRODUCTS = [
     id: 'forge-tkl-keyboard',
     name: 'Forge TKL Mechanical Keyboard',
     category: 'Mechanical Keyboard',
-    description: 'Compact tenkeyless mechanical keyboard designed for gaming.',
-    price: 3499, // Fixed integer rupees (no floats)
+    description: 'Compact tenkeyless mechanical keyboard featuring pre-lubed tactile switches, hot-swappable PCB, and sound-dampening acoustic layers.',
+    price: 3499, // Integer rupee representation
+    specs: [
+      { label: 'Layout', val: 'Tenkeyless (87 Keys / 80%)' },
+      { label: 'Switches', val: 'Tactile Orange (Pre-lubed 55g)' },
+      { label: 'Keycaps', val: 'Seamless Doubleshot PBT' },
+      { label: 'PCB', val: 'Hot-Swappable 5-pin Sockets' },
+      { label: 'Chassis', val: 'CNC Machined Anodized Aluminum' }
+    ],
     svg: `
-      <svg class="product-svg-icon" viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <line x1="6" y1="8" x2="6.01" y2="8" />
-        <line x1="10" y1="8" x2="10.01" y2="8" />
-        <line x1="14" y1="8" x2="14.01" y2="8" />
-        <line x1="18" y1="8" x2="18.01" y2="8" />
-        <line x1="6" y1="12" x2="6.01" y2="12" />
-        <line x1="10" y1="12" x2="10.01" y2="12" />
-        <line x1="14" y1="12" x2="14.01" y2="12" />
-        <line x1="18" y1="12" x2="18.01" y2="12" />
-        <line x1="7" y1="16" x2="17" y2="16" />
+      <svg class="product-svg-icon" viewBox="0 0 240 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="kbBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="var(--bg-card)" />
+            <stop offset="100%" stop-color="var(--bg-subtle)" />
+          </linearGradient>
+        </defs>
+        <!-- Keyboard Outer Bezel -->
+        <rect x="15" y="20" width="210" height="100" rx="8" fill="url(#kbBodyGrad)" stroke="var(--border-subtle)" stroke-width="2" />
+        <rect x="22" y="26" width="196" height="88" rx="4" fill="var(--bg-card-elevate)" stroke="var(--border-color)" stroke-width="1" />
+        
+        <!-- Function Row Keycaps -->
+        <g fill="var(--bg-card)" stroke="var(--border-color)" stroke-width="0.8">
+          <rect x="28" y="32" width="14" height="10" rx="1.5" />
+          <rect x="46" y="32" width="11" height="10" rx="1.5" />
+          <rect x="60" y="32" width="11" height="10" rx="1.5" />
+          <rect x="74" y="32" width="11" height="10" rx="1.5" />
+          <rect x="88" y="32" width="11" height="10" rx="1.5" />
+          <rect x="106" y="32" width="11" height="10" rx="1.5" />
+          <rect x="120" y="32" width="11" height="10" rx="1.5" />
+          <rect x="134" y="32" width="11" height="10" rx="1.5" />
+          <rect x="148" y="32" width="11" height="10" rx="1.5" />
+          <!-- TKL cluster top -->
+          <rect x="168" y="32" width="11" height="10" rx="1.5" />
+          <rect x="182" y="32" width="11" height="10" rx="1.5" />
+          <rect x="196" y="32" width="11" height="10" rx="1.5" fill="var(--accent-lime)" fill-opacity="0.25" stroke="var(--accent-lime)" />
+
+          <!-- Alpha Rows -->
+          <rect x="28" y="46" width="16" height="11" rx="1.5" />
+          <rect x="47" y="46" width="11" height="11" rx="1.5" />
+          <rect x="61" y="46" width="11" height="11" rx="1.5" />
+          <rect x="75" y="46" width="11" height="11" rx="1.5" />
+          <rect x="89" y="46" width="11" height="11" rx="1.5" />
+          <rect x="103" y="46" width="11" height="11" rx="1.5" />
+          <rect x="117" y="46" width="11" height="11" rx="1.5" />
+          <rect x="131" y="46" width="11" height="11" rx="1.5" />
+          <rect x="145" y="46" width="14" height="11" rx="1.5" />
+          <rect x="168" y="46" width="11" height="11" rx="1.5" />
+          <rect x="182" y="46" width="11" height="11" rx="1.5" />
+          <rect x="196" y="46" width="11" height="11" rx="1.5" />
+
+          <!-- Home Row -->
+          <rect x="28" y="61" width="18" height="11" rx="1.5" />
+          <rect x="49" y="61" width="11" height="11" rx="1.5" />
+          <rect x="63" y="61" width="11" height="11" rx="1.5" />
+          <rect x="77" y="61" width="11" height="11" rx="1.5" />
+          <rect x="91" y="61" width="11" height="11" rx="1.5" />
+          <rect x="105" y="61" width="11" height="11" rx="1.5" />
+          <rect x="119" y="61" width="11" height="11" rx="1.5" />
+          <rect x="133" y="61" width="11" height="11" rx="1.5" />
+          <rect x="147" y="61" width="12" height="11" rx="1.5" />
+          <rect x="168" y="61" width="11" height="11" rx="1.5" />
+          <rect x="182" y="61" width="11" height="11" rx="1.5" />
+          <rect x="196" y="61" width="11" height="11" rx="1.5" />
+
+          <!-- Bottom Row with Spacebar -->
+          <rect x="28" y="76" width="18" height="12" rx="1.5" />
+          <rect x="49" y="76" width="14" height="12" rx="1.5" />
+          <rect x="66" y="76" width="70" height="12" rx="1.5" fill="var(--accent-lime)" fill-opacity="0.3" stroke="var(--accent-lime)" stroke-width="1.2" />
+          <rect x="139" y="76" width="12" height="12" rx="1.5" />
+          <rect x="154" y="76" width="12" height="12" rx="1.5" />
+          <!-- Arrow Key cluster -->
+          <rect x="182" y="76" width="11" height="11" rx="1.5" />
+          <rect x="168" y="89" width="11" height="11" rx="1.5" />
+          <rect x="182" y="89" width="11" height="11" rx="1.5" />
+          <rect x="196" y="89" width="11" height="11" rx="1.5" />
+        </g>
+        
+        <!-- Status Indicator LEDs -->
+        <circle cx="160" cy="23" r="1.5" fill="var(--accent-lime)" />
+        <circle cx="166" cy="23" r="1.5" fill="var(--border-subtle)" />
+        <circle cx="172" cy="23" r="1.5" fill="var(--border-subtle)" />
       </svg>
     `
   }
@@ -58,6 +162,7 @@ let isOrderCompleted = false;
 const productGridEl = document.getElementById('product-grid');
 const cartContainerEl = document.getElementById('cart-container');
 const cartItemCountBadgeEl = document.getElementById('cart-item-count-badge');
+const cartItemCountBadgeSubEl = document.getElementById('cart-item-count-badge-sub');
 const summaryBreakdownEl = document.getElementById('summary-breakdown');
 const orderTotalEl = document.getElementById('order-total');
 const orderTotalQtyEl = document.getElementById('order-total-qty');
@@ -67,11 +172,14 @@ const validationMessageAreaEl = document.getElementById('validation-message-area
 const placeOrderBtnEl = document.getElementById('place-order-btn');
 const confirmationSectionEl = document.getElementById('confirmation-section');
 const srAnnouncerEl = document.getElementById('sr-announcer');
+const toastContainerEl = document.getElementById('toast-container');
+const themeToggleBtnEl = document.getElementById('theme-toggle');
+const mobileMenuBtnEl = document.getElementById('mobile-menu-btn');
+const mobileNavDrawerEl = document.getElementById('mobile-nav-drawer');
 
 /**
  * Currency Formatter
- * Uses standard Indian numbering formatting with rupee symbol (₹).
- * Guarantees integer rupee presentation without decimals.
+ * Generates exact rupee representation formatted cleanly without decimals.
  */
 function formatCurrency(amount) {
   return `₹${amount.toLocaleString('en-IN')}`;
@@ -87,6 +195,38 @@ function announceToScreenReader(message) {
 }
 
 /**
+ * Toast Notification System
+ */
+function showToast(message, type = 'info') {
+  if (!toastContainerEl) return;
+
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.setAttribute('role', 'status');
+
+  const iconSvg = type === 'success' || type === 'info'
+    ? `<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>`
+    : `<svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
+
+  toast.innerHTML = `
+    ${iconSvg}
+    <span>${message}</span>
+  `;
+
+  toastContainerEl.appendChild(toast);
+
+  // Auto remove after 3.2 seconds
+  setTimeout(() => {
+    toast.classList.add('toast-exit');
+    setTimeout(() => {
+      if (toast.parentNode) {
+        toast.parentNode.removeChild(toast);
+      }
+    }, 250);
+  }, 3200);
+}
+
+/**
  * Cryptographically Secure Order Reference Generator
  * Format: GG-XXXXXXXX (8 uppercase hexadecimal characters)
  */
@@ -97,15 +237,13 @@ function generateOrderReference() {
     const hex = Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('').toUpperCase();
     return `GG-${hex}`;
   }
-  // Fallback if crypto is unavailable in legacy test runner
   const randomPart = Math.floor(Math.random() * 0xFFFFFFFF).toString(16).padStart(8, '0').toUpperCase();
   return `GG-${randomPart}`;
 }
 
 /**
  * Calculation Engine
- * Calculates item line totals and total order summary.
- * Guaranteed pure integer arithmetic.
+ * Pure integer arithmetic guarantees zero floating point inaccuracies.
  */
 function calculateTotals() {
   let totalQuantity = 0;
@@ -129,7 +267,7 @@ function calculateTotals() {
 }
 
 /**
- * Render Product Catalogue
+ * Render Product Catalogue with Interactive Technical Disclosures
  */
 function renderCatalogue() {
   if (!productGridEl) return;
@@ -140,6 +278,13 @@ function renderCatalogue() {
     card.className = 'product-card';
     card.setAttribute('aria-labelledby', `product-title-${product.id}`);
 
+    const specsHtml = product.specs.map(s => `
+      <li>
+        <span class="spec-label">${s.label}</span>
+        <span class="spec-val">${s.val}</span>
+      </li>
+    `).join('');
+
     card.innerHTML = `
       <div class="product-visual-wrapper">
         ${product.svg}
@@ -147,8 +292,25 @@ function renderCatalogue() {
       <div class="product-category">${product.category}</div>
       <h3 id="product-title-${product.id}" class="product-title">${product.name}</h3>
       <p class="product-description">${product.description}</p>
+      
+      <!-- Interactive Technical Specifications Disclosure -->
+      <details class="product-details-disclosure">
+        <summary class="disclosure-summary">
+          <svg class="disclosure-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+          <span>Technical Specifications</span>
+        </summary>
+        <ul class="spec-list">
+          ${specsHtml}
+        </ul>
+      </details>
+
       <div class="product-footer">
-        <span class="product-price" aria-label="Price: ${formatCurrency(product.price)}">${formatCurrency(product.price)}</span>
+        <div class="product-price-block">
+          <span class="price-subtext">Fixed Unit Price</span>
+          <span class="product-price" aria-label="Price: ${formatCurrency(product.price)}">${formatCurrency(product.price)}</span>
+        </div>
         <button 
           type="button" 
           class="btn btn-primary btn-sm add-to-cart-btn" 
@@ -176,17 +338,20 @@ function renderCart() {
   if (!cartContainerEl) return;
 
   const { totalQuantity, lineDetails } = calculateTotals();
-  cartItemCountBadgeEl.textContent = `${totalQuantity} ${totalQuantity === 1 ? 'item' : 'items'}`;
+  const badgeLabel = `${totalQuantity} ${totalQuantity === 1 ? 'item' : 'items'}`;
+  if (cartItemCountBadgeEl) cartItemCountBadgeEl.textContent = badgeLabel;
+  if (cartItemCountBadgeSubEl) cartItemCountBadgeSubEl.textContent = `${totalQuantity} in Cart`;
 
   if (cart.length === 0) {
     cartContainerEl.innerHTML = `
       <div class="empty-cart-state" id="cart-empty-state">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg class="empty-cart-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="9" cy="21" r="1"></circle>
           <circle cx="20" cy="21" r="1"></circle>
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
         </svg>
         <p class="empty-cart-text">Your cart is currently empty</p>
+        <p class="empty-cart-subtext">Add hardware from the lineup above to configure your order.</p>
       </div>
     `;
     return;
@@ -239,7 +404,7 @@ function renderCart() {
       </button>
     `;
 
-    // Event Listeners for cart item controls
+    // Cart controls listeners
     const decBtn = li.querySelector('.qty-decrease-btn');
     decBtn.addEventListener('click', () => updateQuantity(product.id, -1));
 
@@ -262,8 +427,10 @@ function renderCart() {
 function renderOrderSummary() {
   const { totalQuantity, orderTotal, lineDetails } = calculateTotals();
 
-  orderTotalEl.textContent = formatCurrency(orderTotal);
-  orderTotalQtyEl.textContent = totalQuantity.toString();
+  if (orderTotalEl) orderTotalEl.textContent = formatCurrency(orderTotal);
+  if (orderTotalQtyEl) orderTotalQtyEl.textContent = totalQuantity.toString();
+
+  if (!summaryBreakdownEl) return;
 
   if (cart.length === 0) {
     summaryBreakdownEl.innerHTML = '<div class="summary-empty-msg" id="summary-empty-msg">No items in cart</div>';
@@ -296,18 +463,19 @@ function addToCart(productId) {
   }
 
   const product = PRODUCTS.find(p => p.id === productId);
-  announceToScreenReader(`Added ${product ? product.name : 'product'} to cart.`);
+  const name = product ? product.name : 'Hardware item';
 
-  // If there was an active empty-cart validation message, clear it
+  showToast(`${name} added to cart`);
+  announceToScreenReader(`Added ${name} to cart.`);
+
   clearValidationMessageIfResolved();
-
   renderCart();
   renderOrderSummary();
 }
 
 /**
  * Update Item Quantity
- * Guarantees quantity never becomes zero or negative.
+ * Hard boundary ensures quantity never decreases below 1.
  */
 function updateQuantity(productId, delta) {
   if (isOrderCompleted) return;
@@ -317,7 +485,6 @@ function updateQuantity(productId, delta) {
 
   const nextQty = item.quantity + delta;
   if (nextQty < 1) {
-    // Prevent zero or negative quantity
     return;
   }
 
@@ -326,7 +493,7 @@ function updateQuantity(productId, delta) {
   renderOrderSummary();
 
   const product = PRODUCTS.find(p => p.id === productId);
-  announceToScreenReader(`Updated ${product ? product.name : 'item'} quantity to ${item.quantity}.`);
+  announceToScreenReader(`Updated quantity to ${item.quantity}.`);
 }
 
 /**
@@ -341,13 +508,18 @@ function removeFromCart(productId) {
   renderCart();
   renderOrderSummary();
 
-  announceToScreenReader(`Removed ${product ? product.name : 'item'} from cart.`);
+  if (product) {
+    showToast(`${product.name} removed from cart`);
+    announceToScreenReader(`Removed ${product.name} from cart.`);
+  }
 }
 
 /**
  * Display Validation Message
  */
 function displayValidationError(message) {
+  if (!validationMessageAreaEl) return;
+
   validationMessageAreaEl.innerHTML = `
     <div class="validation-error" id="validation-error-alert" role="alert">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -365,14 +537,19 @@ function displayValidationError(message) {
  * Clear Validation Messages
  */
 function clearValidationError() {
-  validationMessageAreaEl.innerHTML = '';
-  customerNameInputEl.classList.remove('input-error');
+  if (validationMessageAreaEl) {
+    validationMessageAreaEl.innerHTML = '';
+  }
+  if (customerNameInputEl) {
+    customerNameInputEl.classList.remove('input-error');
+  }
 }
 
 /**
- * Automatically clear empty-cart error when items are added
+ * Automatically clear empty-cart error when products are added
  */
 function clearValidationMessageIfResolved() {
+  if (!validationMessageAreaEl) return;
   const currentError = validationMessageAreaEl.querySelector('.validation-error');
   if (currentError && currentError.textContent.includes('cart is empty') && cart.length > 0) {
     clearValidationError();
@@ -383,29 +560,31 @@ function clearValidationMessageIfResolved() {
  * Validate Checkout Form & Cart
  */
 function validateCheckout() {
-  const rawName = customerNameInputEl.value;
+  const rawName = customerNameInputEl ? customerNameInputEl.value : '';
   const trimmedName = rawName.trim();
 
   // Validate cart is not empty
   if (cart.length === 0) {
-    customerNameInputEl.classList.remove('input-error');
+    if (customerNameInputEl) customerNameInputEl.classList.remove('input-error');
     return {
       isValid: false,
       message: 'Your cart is empty. Please add at least one product before placing an order.'
     };
   }
 
-  // Validate required customer name
+  // Validate customer name
   if (!trimmedName) {
-    customerNameInputEl.classList.add('input-error');
-    customerNameInputEl.focus();
+    if (customerNameInputEl) {
+      customerNameInputEl.classList.add('input-error');
+      customerNameInputEl.focus();
+    }
     return {
       isValid: false,
       message: 'Please enter your name. Customer name is required to complete checkout.'
     };
   }
 
-  customerNameInputEl.classList.remove('input-error');
+  if (customerNameInputEl) customerNameInputEl.classList.remove('input-error');
   return {
     isValid: true,
     customerName: trimmedName
@@ -414,7 +593,7 @@ function validateCheckout() {
 
 /**
  * Synchronous Checkout Submission Handler
- * Features robust duplicate submission protection.
+ * Synchronous guard immediately prevents race conditions or duplicate submissions.
  */
 function handleCheckout(event) {
   if (event) {
@@ -426,25 +605,22 @@ function handleCheckout(event) {
     return;
   }
 
-  // Clear previous validation alerts
   clearValidationError();
 
-  // Execute validation
   const validation = validateCheckout();
   if (!validation.isValid) {
     displayValidationError(validation.message);
-    // Note: State of cart and customer input are strictly preserved!
+    // Non-destructive: form input and cart contents remain completely preserved
     return;
   }
 
-  // Set processing lock synchronously
+  // Lock submission synchronously
   isOrderProcessing = true;
 
   try {
     const { totalQuantity, orderTotal, lineDetails } = calculateTotals();
     const orderReference = generateOrderReference();
 
-    // Mark as completed
     isOrderCompleted = true;
 
     // Render Order Confirmation
@@ -456,11 +632,11 @@ function handleCheckout(event) {
       lineDetails
     });
 
-    // Hide checkout form and disable Place Order button
-    checkoutFormEl.style.display = 'none';
-    placeOrderBtnEl.disabled = true;
+    if (checkoutFormEl) checkoutFormEl.style.display = 'none';
+    if (placeOrderBtnEl) placeOrderBtnEl.disabled = true;
 
-    announceToScreenReader(`Order placed successfully. Your order reference is ${orderReference}.`);
+    showToast(`Order confirmed! Ref: ${orderReference}`, 'success');
+    announceToScreenReader(`Order placed successfully. Order reference is ${orderReference}.`);
   } finally {
     isOrderProcessing = false;
   }
@@ -470,6 +646,15 @@ function handleCheckout(event) {
  * Display Order Confirmation
  */
 function displayOrderConfirmation({ customerName, orderReference, totalQuantity, orderTotal, lineDetails }) {
+  if (!confirmationSectionEl) return;
+
+  const itemsBreakdownHtml = lineDetails.map(({ product, quantity, lineTotal }) => `
+    <div class="confirmation-detail-row">
+      <span class="confirmation-detail-label">${escapeHtml(product.name)} &times; ${quantity}</span>
+      <span class="confirmation-detail-value">${formatCurrency(lineTotal)}</span>
+    </div>
+  `).join('');
+
   confirmationSectionEl.innerHTML = `
     <div class="confirmation-icon" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -477,7 +662,7 @@ function displayOrderConfirmation({ customerName, orderReference, totalQuantity,
       </svg>
     </div>
     <h3 class="confirmation-heading" id="confirmation-title">Order Confirmed!</h3>
-    <p class="confirmation-msg">Thank you for your order, <strong>${escapeHtml(customerName)}</strong>. Your equipment is being prepared.</p>
+    <p class="confirmation-msg">Thank you for your order, <strong>${escapeHtml(customerName)}</strong>. Your equipment is queued for packing.</p>
     
     <div class="confirmation-card">
       <div class="confirmation-detail-row">
@@ -489,12 +674,13 @@ function displayOrderConfirmation({ customerName, orderReference, totalQuantity,
         <span class="confirmation-detail-value" id="confirmed-customer-name">${escapeHtml(customerName)}</span>
       </div>
       <div class="confirmation-detail-row">
-        <span class="confirmation-detail-label">Items Ordered:</span>
+        <span class="confirmation-detail-label">Total Units:</span>
         <span class="confirmation-detail-value">${totalQuantity} units</span>
       </div>
-      <div class="confirmation-detail-row">
-        <span class="confirmation-detail-label">Total Paid:</span>
-        <span class="confirmation-detail-value">${formatCurrency(orderTotal)}</span>
+      ${itemsBreakdownHtml}
+      <div class="confirmation-detail-row" style="font-weight: 700; color: var(--accent-lime);">
+        <span class="confirmation-detail-label" style="color: var(--text-primary);">Total Paid:</span>
+        <span class="confirmation-detail-value" style="font-family: var(--font-mono); color: var(--accent-lime);">${formatCurrency(orderTotal)}</span>
       </div>
     </div>
 
@@ -505,7 +691,6 @@ function displayOrderConfirmation({ customerName, orderReference, totalQuantity,
 
   confirmationSectionEl.style.display = 'block';
 
-  // Attach Start New Order handler
   const resetBtn = document.getElementById('start-new-order-btn');
   if (resetBtn) {
     resetBtn.addEventListener('click', resetApplication);
@@ -520,19 +705,73 @@ function resetApplication() {
   isOrderProcessing = false;
   isOrderCompleted = false;
 
-  customerNameInputEl.value = '';
+  if (customerNameInputEl) customerNameInputEl.value = '';
   clearValidationError();
 
-  confirmationSectionEl.innerHTML = '';
-  confirmationSectionEl.style.display = 'none';
+  if (confirmationSectionEl) {
+    confirmationSectionEl.innerHTML = '';
+    confirmationSectionEl.style.display = 'none';
+  }
 
-  checkoutFormEl.style.display = 'block';
-  placeOrderBtnEl.disabled = false;
+  if (checkoutFormEl) checkoutFormEl.style.display = 'block';
+  if (placeOrderBtnEl) placeOrderBtnEl.disabled = false;
 
   renderCart();
   renderOrderSummary();
 
+  showToast('Storefront reset to initial state');
   announceToScreenReader('Application reset to initial state.');
+}
+
+/**
+ * Theme Management
+ */
+function initTheme() {
+  const storedTheme = localStorage.getItem('gamegear-theme');
+  const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+  setTheme(initialTheme);
+
+  if (themeToggleBtnEl) {
+    themeToggleBtnEl.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
+      showToast(`Switched to ${newTheme} theme`);
+    });
+  }
+}
+
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  try {
+    localStorage.setItem('gamegear-theme', theme);
+  } catch (e) {
+    // Graceful fallback if storage disabled
+  }
+}
+
+/**
+ * Mobile Navigation Drawer Toggle
+ */
+function initMobileNav() {
+  if (!mobileMenuBtnEl || !mobileNavDrawerEl) return;
+
+  mobileMenuBtnEl.addEventListener('click', () => {
+    const isExpanded = mobileMenuBtnEl.getAttribute('aria-expanded') === 'true';
+    mobileMenuBtnEl.setAttribute('aria-expanded', String(!isExpanded));
+    mobileNavDrawerEl.hidden = isExpanded;
+  });
+
+  // Close drawer on link click
+  const mobileLinks = mobileNavDrawerEl.querySelectorAll('.mobile-nav-link');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenuBtnEl.setAttribute('aria-expanded', 'false');
+      mobileNavDrawerEl.hidden = true;
+    });
+  });
 }
 
 /**
@@ -545,25 +784,29 @@ function escapeHtml(str) {
 }
 
 /**
- * Application Initialization
+ * Application Bootstrap
  */
 function initApp() {
+  initTheme();
+  initMobileNav();
   renderCatalogue();
   renderCart();
   renderOrderSummary();
 
-  // Attach form submit and button click handlers
-  checkoutFormEl.addEventListener('submit', handleCheckout);
+  if (checkoutFormEl) {
+    checkoutFormEl.addEventListener('submit', handleCheckout);
+  }
 
-  // Clear name input error highlight on typing
-  customerNameInputEl.addEventListener('input', () => {
-    if (customerNameInputEl.classList.contains('input-error') && customerNameInputEl.value.trim()) {
-      clearValidationError();
-    }
-  });
+  if (customerNameInputEl) {
+    customerNameInputEl.addEventListener('input', () => {
+      if (customerNameInputEl.classList.contains('input-error') && customerNameInputEl.value.trim()) {
+        clearValidationError();
+      }
+    });
+  }
 }
 
-// Bootstrap once DOM is loaded
+// Bootstrap once DOM ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initApp);
 } else {

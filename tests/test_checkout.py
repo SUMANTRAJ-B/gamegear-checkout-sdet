@@ -1,9 +1,9 @@
 """
-Automated Browser Test Suite for GameGear Storefront.
+Automated Browser Test Suite for GameGear 2.0 Storefront.
 
-Implements:
+Maintains:
 - Mandatory Test 1: Successful checkout with unique order reference
-- Mandatory Test 2: Required-field customer name validation
+- Mandatory Test 2: Required-field customer name validation & state preservation
 - Mandatory Test 3: Quantity increment and exact total calculations
 - Regression Test 1: Empty cart submission prevention
 - Regression Test 2: Rapid double-click duplicate order prevention
@@ -11,6 +11,13 @@ Implements:
 - Regression Test 4: Quantity minimum bound (cannot decrement below 1)
 - Regression Test 5: Re-adding existing product increments quantity
 - Regression Test 6: Multi-item calculation verification (Mouse x 1 + Keyboard x 2 = ₹8,497)
+
+New Interaction & Visual Tests:
+- Interaction Test 1: Theme toggle between dark and light mode
+- Interaction Test 2: Interactive technical specifications disclosure
+- Interaction Test 3: Toast notification feedback on adding to cart
+- Interaction Test 4: Responsive mobile navigation drawer toggle
+- Interaction Test 5: Multi-viewport visual verification & evidence capture
 """
 
 import re
@@ -135,7 +142,7 @@ def test_mandatory_3_quantity_calculation(page: Page):
 
 
 # ==============================================================================
-# ADDITIONAL EXTENDED REGRESSION TESTS
+# EXTENDED REGRESSION TESTS
 # ==============================================================================
 
 @pytest.mark.regression
@@ -144,18 +151,14 @@ def test_regression_empty_cart_submission_blocked(page: Page):
     Regression Test 1: Empty cart submission.
     Checkout is blocked and an understandable message appears when cart is empty.
     """
-    # Cart is clean/empty, enter customer name
     page.get_by_label("Customer Name *").fill("Jordan Reed")
     page.get_by_role("button", name="Place Order").click()
 
-    # Verify empty cart validation alert appears
     alert = page.locator("#validation-error-alert")
     expect(alert).to_be_visible()
     expect(alert).to_contain_text("Your cart is empty. Please add at least one product")
 
-    # Confirm checkout was blocked
     expect(page.locator("#confirmation-section")).not_to_be_visible()
-    # Name input value preserved
     expect(page.get_by_label("Customer Name *")).to_have_value("Jordan Reed")
 
 
@@ -171,14 +174,9 @@ def test_regression_rapid_double_click_duplicate_prevention(page: Page):
     page.get_by_label("Customer Name *").fill("Taylor Swift")
 
     place_btn = page.get_by_role("button", name="Place Order")
-
-    # Rapid double click
     place_btn.dblclick()
 
-    # Verify confirmation exists
     expect(page.locator("#confirmation-title")).to_be_visible()
-
-    # Verify strictly one confirmation and one reference
     expect(page.locator(".confirmation-heading")).to_have_count(1)
     expect(page.locator("#confirmed-order-ref")).to_have_count(1)
 
@@ -195,10 +193,8 @@ def test_regression_product_removal(page: Page):
     expect(page.locator(".cart-item")).to_have_count(1)
     expect(page.locator("#order-total")).to_have_text("₹1,499")
 
-    # Remove product
     page.get_by_role("button", name="Remove Arc M1 Gaming Mouse").click()
 
-    # Verify empty state
     expect(page.locator("#cart-empty-state")).to_be_visible()
     expect(page.locator("#order-total")).to_have_text("₹0")
     expect(page.locator("#cart-item-count-badge")).to_have_text("0 items")
@@ -214,10 +210,8 @@ def test_regression_quantity_minimum_bound(page: Page):
     expect(page.locator(".cart-qty-value")).to_have_text("1")
 
     dec_btn = page.get_by_role("button", name="Decrease quantity for Forge TKL Mechanical Keyboard")
-    # Button is disabled when quantity is 1
     expect(dec_btn).to_be_disabled()
 
-    # Even if clicked or invoked, quantity stays 1
     expect(page.locator(".cart-qty-value")).to_have_text("1")
     expect(page.locator("#order-total")).to_have_text("₹3,499")
 
@@ -228,15 +222,11 @@ def test_regression_add_existing_product_increments_quantity(page: Page):
     Regression Test 5: Existing product addition.
     Clicking 'Add to Cart' for a product already in cart increments quantity rather than adding duplicate row.
     """
-    # Click Add twice
     page.get_by_role("button", name="Add Arc M1 Gaming Mouse").click()
     page.get_by_role("button", name="Add Arc M1 Gaming Mouse").click()
 
-    # Exactly one cart item element exists
     expect(page.locator(".cart-item")).to_have_count(1)
-    # Quantity is 2
     expect(page.locator(".cart-qty-value")).to_have_text("2")
-    # Total is 1499 * 2 = 2998
     expect(page.locator(".cart-item-line-total")).to_have_text("₹2,998")
     expect(page.locator("#order-total")).to_have_text("₹2,998")
 
@@ -249,12 +239,115 @@ def test_regression_multi_product_calculation(page: Page):
     """
     page.get_by_role("button", name="Add Arc M1 Gaming Mouse").click()
     page.get_by_role("button", name="Add Forge TKL Mechanical Keyboard").click()
-
-    # Increase keyboard to 2
     page.get_by_role("button", name="Increase quantity for Forge TKL Mechanical Keyboard").click()
 
     expect(page.locator(".cart-item")).to_have_count(2)
-    # Total quantity = 1 + 2 = 3
     expect(page.locator("#order-total-qty")).to_have_text("3")
-    # Order total = 1499 + 6998 = 8497
     expect(page.locator("#order-total")).to_have_text("₹8,497")
+
+
+# ==============================================================================
+# GAMEGEAR 2.0 INTERACTION & VISUAL REGRESSION TESTS
+# ==============================================================================
+
+@pytest.mark.regression
+def test_interaction_theme_switching(page: Page):
+    """
+    Interaction Test 1: Light / Dark theme toggle.
+    Verifies data-theme attribute updates on html tag upon clicking theme toggle.
+    """
+    initial_theme = page.locator("html").get_attribute("data-theme")
+    theme_btn = page.locator("#theme-toggle")
+    expect(theme_btn).to_be_visible()
+
+    # Toggle theme
+    theme_btn.click()
+    new_theme = page.locator("html").get_attribute("data-theme")
+    assert new_theme != initial_theme, f"Theme did not toggle from {initial_theme}"
+
+    # Toggle back
+    theme_btn.click()
+    restored_theme = page.locator("html").get_attribute("data-theme")
+    assert restored_theme == initial_theme
+
+
+@pytest.mark.regression
+def test_interaction_product_details_disclosure(page: Page):
+    """
+    Interaction Test 2: Product technical specifications disclosure.
+    Verifies collapsible specifications accordion expands to display sensor details.
+    """
+    EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
+
+    disclosure = page.locator(".product-details-disclosure").first
+    summary = disclosure.locator(".disclosure-summary")
+
+    # Initially closed
+    expect(disclosure).not_to_have_attribute("open", "")
+
+    # Click to expand
+    summary.click()
+    expect(disclosure).to_have_attribute("open", "")
+    expect(disclosure).to_contain_text("PixArt 3395 Optical")
+
+    # Capture product interaction screenshot evidence
+    page.screenshot(path=str(EVIDENCE_DIR / "product-interaction.png"))
+
+
+@pytest.mark.regression
+def test_interaction_toast_feedback_on_cart_addition(page: Page):
+    """
+    Interaction Test 3: Toast notification system.
+    Verifies toast notification pops up when an item is added to the cart.
+    """
+    page.get_by_role("button", name="Add Arc M1 Gaming Mouse").click()
+    toast = page.locator(".toast")
+    expect(toast).to_be_visible()
+    expect(toast).to_contain_text("Arc M1 Gaming Mouse added to cart")
+
+
+@pytest.mark.regression
+def test_interaction_mobile_navigation_drawer(page: Page):
+    """
+    Interaction Test 4: Responsive mobile navigation drawer toggle.
+    Verifies hamburger menu controls mobile drawer in mobile viewport (390x844).
+    """
+    page.set_viewport_size({"width": 390, "height": 844})
+    
+    mobile_btn = page.locator("#mobile-menu-btn")
+    expect(mobile_btn).to_be_visible()
+
+    drawer = page.locator("#mobile-nav-drawer")
+    expect(drawer).to_be_hidden()
+
+    # Click to open drawer
+    mobile_btn.click()
+    expect(drawer).to_be_visible()
+
+    # Click drawer link closes drawer
+    drawer.locator(".mobile-nav-link").first.click()
+    expect(drawer).to_be_hidden()
+
+
+@pytest.mark.regression
+def test_interaction_responsive_viewports_and_evidence(page: Page):
+    """
+    Interaction Test 5: Responsive viewports & visual evidence generation.
+    Captures authentic screenshots of Desktop Storefront, Mobile Storefront, and Cart with Items.
+    """
+    EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
+
+    # 1. Desktop Storefront Evidence (1440 x 900)
+    page.set_viewport_size({"width": 1440, "height": 900})
+    expect(page.get_by_role("heading", name="Built for your next session.")).to_be_visible()
+    page.screenshot(path=str(EVIDENCE_DIR / "desktop-storefront.png"))
+
+    # 2. Add both products to cart for Cart With Items Evidence
+    page.get_by_role("button", name="Add Arc M1 Gaming Mouse").click()
+    page.get_by_role("button", name="Add Forge TKL Mechanical Keyboard").click()
+    expect(page.locator(".cart-item")).to_have_count(2)
+    page.screenshot(path=str(EVIDENCE_DIR / "cart-with-items.png"))
+
+    # 3. Mobile Storefront Evidence (390 x 844)
+    page.set_viewport_size({"width": 390, "height": 844})
+    page.screenshot(path=str(EVIDENCE_DIR / "mobile-storefront.png"))

@@ -6,19 +6,24 @@ rootdir: C:\Users\jhonp\Downloads\Fynd-Hackathon-Workspace\gamegear-checkout-sde
 configfile: pytest.ini
 plugins: anyio-4.13.0, langsmith-0.8.8, asyncio-1.4.0
 asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
-collecting ... collected 9 items
+collecting ... collected 14 items
 
-tests/test_checkout.py::test_mandatory_1_successful_checkout PASSED      [ 11%]
-tests/test_checkout.py::test_mandatory_2_required_field_validation PASSED [ 22%]
-tests/test_checkout.py::test_mandatory_3_quantity_calculation PASSED     [ 33%]
-tests/test_checkout.py::test_regression_empty_cart_submission_blocked PASSED [ 44%]
-tests/test_checkout.py::test_regression_rapid_double_click_duplicate_prevention PASSED [ 55%]
-tests/test_checkout.py::test_regression_product_removal PASSED           [ 66%]
-tests/test_checkout.py::test_regression_quantity_minimum_bound PASSED    [ 77%]
-tests/test_checkout.py::test_regression_add_existing_product_increments_quantity PASSED [ 88%]
-tests/test_checkout.py::test_regression_multi_product_calculation PASSED [100%]
+tests/test_checkout.py::test_mandatory_1_successful_checkout PASSED      [  7%]
+tests/test_checkout.py::test_mandatory_2_required_field_validation PASSED [ 14%]
+tests/test_checkout.py::test_mandatory_3_quantity_calculation PASSED     [ 21%]
+tests/test_checkout.py::test_regression_empty_cart_submission_blocked PASSED [ 28%]
+tests/test_checkout.py::test_regression_rapid_double_click_duplicate_prevention PASSED [ 35%]
+tests/test_checkout.py::test_regression_product_removal PASSED           [ 42%]
+tests/test_checkout.py::test_regression_quantity_minimum_bound PASSED    [ 50%]
+tests/test_checkout.py::test_regression_add_existing_product_increments_quantity PASSED [ 57%]
+tests/test_checkout.py::test_regression_multi_product_calculation PASSED [ 64%]
+tests/test_checkout.py::test_interaction_theme_switching PASSED          [ 71%]
+tests/test_checkout.py::test_interaction_product_details_disclosure PASSED [ 78%]
+tests/test_checkout.py::test_interaction_toast_feedback_on_cart_addition PASSED [ 85%]
+tests/test_checkout.py::test_interaction_mobile_navigation_drawer PASSED [ 92%]
+tests/test_checkout.py::test_interaction_responsive_viewports_and_evidence PASSED [100%]
 
 - generated xml file: C:\Users\jhonp\Downloads\Fynd-Hackathon-Workspace\gamegear-checkout-sdet\reports\junit.xml -
-============================== 9 passed in 5.09s ==============================
+============================= 14 passed in 7.79s ==============================
 
 === STDERR ===

@@ -1,30 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GameGear — Minimal Gaming Accessories Checkout</title>
+  <title>GameGear — Premium Gaming Accessories Storefront</title>
+  <meta name="description" content="Minimal, precision-engineered gaming peripherals. Clean checkout experience with verified browser automation suite.">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-  <!-- Header / Brand Identity -->
+  <!-- Header / Navigation Bar -->
   <header class="site-header" role="banner">
     <div class="header-container">
+      <a href="#main-content" class="skip-to-content">Skip to content</a>
+      
       <div class="brand">
-        <span class="brand-logo" aria-hidden="true">GG</span>
-        <h1 class="brand-name">GAMEGEAR</h1>
+        <a href="#" class="brand-link" aria-label="GameGear Home">
+          <span class="brand-logo" aria-hidden="true">GG</span>
+          <h1 class="brand-name">GAMEGEAR</h1>
+        </a>
       </div>
-      <div class="tagline">Precision Hardware. Pure Performance.</div>
+
+      <!-- Desktop Navigation -->
+      <nav class="site-nav" id="site-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#collection" class="nav-link">Hardware</a></li>
+          <li><a href="#technical-specs" class="nav-link">Engineering</a></li>
+          <li><a href="#cart-section" class="nav-link">Order Details</a></li>
+        </ul>
+      </nav>
+
+      <!-- Utility Actions -->
+      <div class="header-actions">
+        <!-- Theme Toggle -->
+        <button 
+          type="button" 
+          id="theme-toggle" 
+          class="icon-btn theme-toggle-btn" 
+          aria-label="Toggle light or dark theme"
+          title="Toggle color theme"
+        >
+          <span class="theme-icon sun-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-icon moon-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <!-- Cart Quick Anchor -->
+        <a href="#cart-section" class="cart-pill-btn" id="nav-cart-btn" aria-label="View Shopping Cart">
+          <svg class="cart-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-pill-text">Cart</span>
+          <span id="cart-item-count-badge" class="badge badge-accent">0 items</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button 
+          type="button" 
+          id="mobile-menu-btn" 
+          class="icon-btn mobile-menu-btn" 
+          aria-expanded="false" 
+          aria-controls="mobile-nav-drawer"
+          aria-label="Toggle mobile menu"
+        >
+          <svg class="menu-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-nav-drawer" class="mobile-nav-drawer" hidden>
+      <ul class="mobile-nav-list">
+        <li><a href="#collection" class="mobile-nav-link">Hardware Collection</a></li>
+        <li><a href="#technical-specs" class="mobile-nav-link">Engineering Specs</a></li>
+        <li><a href="#cart-section" class="mobile-nav-link">Cart &amp; Checkout</a></li>
+      </ul>
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Editorial Hero Section -->
   <section class="hero-section" aria-labelledby="hero-title">
     <div class="hero-container">
-      <h2 id="hero-title" class="hero-title">Engineered for Competition</h2>
-      <p class="hero-subtitle">
-        Carefully designed gaming peripherals built for speed, durability, and tactical accuracy.
-      </p>
+      <div class="hero-text-content">
+        <div class="hero-eyebrow">
+          <span class="status-indicator-dot" aria-hidden="true"></span>
+          <span>COMPETITIVE SERIES 2026 &bull; ESPORTS GRADE</span>
+        </div>
+        <h2 id="hero-title" class="hero-title">Built for your next session.</h2>
+        <p class="hero-subtitle">
+          Precision ergonomics, zero-latency wireless connectivity, and calibrated mechanical tactile feedback. 
+          Hardware crafted without compromise for focused performance.
+        </p>
+        <div class="hero-actions">
+          <a href="#collection" class="btn btn-primary btn-hero">
+            Explore Collection
+            <svg class="btn-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="#cart-section" class="btn btn-ghost btn-hero">Quick Checkout</a>
+        </div>
+        
+        <!-- Technical Spec Highlights -->
+        <div class="hero-metrics" id="technical-specs">
+          <div class="metric-item">
+            <span class="metric-val">&lt;0.2ms</span>
+            <span class="metric-label">Wireless Latency</span>
+          </div>
+          <div class="metric-divider" aria-hidden="true"></div>
+          <div class="metric-item">
+            <span class="metric-val">54g</span>
+            <span class="metric-label">Ultralight Chassis</span>
+          </div>
+          <div class="metric-divider" aria-hidden="true"></div>
+          <div class="metric-item">
+            <span class="metric-val">100M</span>
+            <span class="metric-label">Optical Actuation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Art -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-art-container">
+          <!-- Stylized Isometric Hardware Composition SVG -->
+          <svg class="hero-art-svg" viewBox="0 0 520 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="heroArtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="var(--accent-lime)" stop-opacity="0.15" />
+                <stop offset="100%" stop-color="var(--accent-lime)" stop-opacity="0.0" />
+              </linearGradient>
+            </defs>
+            <rect x="10" y="10" width="500" height="320" rx="16" fill="url(#heroArtGrad)" stroke="var(--border-color)" stroke-width="1.5" />
+            <!-- Keyboard Plate Representation -->
+            <rect x="40" y="45" width="280" height="150" rx="10" fill="var(--bg-card-elevate)" stroke="var(--border-color)" stroke-width="1.5" />
+            <!-- Keyboard Keys Grid Graphic -->
+            <g opacity="0.6">
+              <rect x="52" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="74" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="96" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="118" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="140" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="162" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="184" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="206" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="228" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="250" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="272" y="58" width="36" height="18" rx="3" fill="var(--accent-lime)" fill-opacity="0.25" stroke="var(--accent-lime)" />
+
+              <rect x="52" y="82" width="26" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="82" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="104" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="126" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="148" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="170" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="192" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="214" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="236" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="258" y="82" width="50" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+
+              <!-- Spacebar row -->
+              <rect x="52" y="106" width="32" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="88" y="106" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="110" y="106" width="98" height="18" rx="3" fill="var(--accent-lime)" fill-opacity="0.35" stroke="var(--accent-lime)" />
+              <rect x="212" y="106" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="234" y="106" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+              <rect x="256" y="106" width="52" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+            </g>
+            <!-- Mouse Silhouette Representation -->
+            <g transform="translate(350, 60)">
+              <rect x="10" y="0" width="120" height="190" rx="60" fill="var(--bg-card-elevate)" stroke="var(--border-color)" stroke-width="2" />
+              <!-- Split button seam -->
+              <line x1="70" y1="10" x2="70" y2="85" stroke="var(--border-color)" stroke-width="1.5" />
+              <!-- Scroll wheel -->
+              <rect x="63" y="25" width="14" height="34" rx="7" fill="var(--accent-lime)" fill-opacity="0.4" stroke="var(--accent-lime)" stroke-width="1.5" />
+              <!-- Thumb groove indicator -->
+              <path d="M12 90 C 24 110, 24 140, 12 160" stroke="var(--border-color)" stroke-width="1.5" fill="none" />
+              <!-- Technical coordinate mark -->
+              <circle cx="70" cy="140" r="14" stroke="var(--accent-lime)" stroke-width="1.2" stroke-dasharray="3 3" />
+              <circle cx="70" cy="140" r="4" fill="var(--accent-lime)" />
+            </g>
+            <text x="40" y="290" fill="var(--text-muted)" font-family="monospace" font-size="12" letter-spacing="1">ARCH // TKL-87 &amp; M1-OPTICAL SYNTHESIS</text>
+            <circle cx="475" cy="285" r="4" fill="var(--accent-lime)" />
+          </svg>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -34,115 +215,150 @@
       
       <!-- Left Column: Product Catalogue & Shopping Cart -->
       <div class="catalogue-column">
-        <!-- Product Catalogue -->
-        <section class="catalogue-section" aria-labelledby="catalogue-heading">
+        
+        <!-- Product Collection Section -->
+        <section class="catalogue-section" id="collection" aria-labelledby="catalogue-heading">
           <div class="section-header">
-            <h2 id="catalogue-heading">Available Accessories</h2>
-            <span class="badge">Official Lineup</span>
+            <div>
+              <span class="section-eyebrow">EQUIPMENT LINEUP</span>
+              <h2 id="catalogue-heading">Available Hardware</h2>
+            </div>
+            <span class="badge badge-subtle">Two Synthetic Units</span>
           </div>
+
+          <!-- Product Cards Grid -->
           <div id="product-grid" class="product-grid" role="region" aria-label="Product Catalogue">
-            <!-- Dynamic products injected here -->
+            <!-- Dynamic products injected here via app.js -->
           </div>
         </section>
 
-        <!-- Shopping Cart -->
-        <section class="cart-section" aria-labelledby="cart-heading">
+        <!-- Shopping Cart Section -->
+        <section class="cart-section" id="cart-section" aria-labelledby="cart-heading">
           <div class="section-header">
-            <h2 id="cart-heading">Shopping Cart</h2>
-            <span id="cart-item-count-badge" class="badge">0 items</span>
+            <div>
+              <span class="section-eyebrow">YOUR EQUIPMENT TALLY</span>
+              <h2 id="cart-heading">Shopping Cart</h2>
+            </div>
+            <span id="cart-item-count-badge-sub" class="badge">Active Cart</span>
           </div>
 
           <div id="cart-container" class="cart-container" role="region" aria-label="Cart Items">
-            <!-- Dynamic cart items or empty state injected here -->
+            <!-- Dynamic cart items or empty state injected here via app.js -->
           </div>
         </section>
+
       </div>
 
       <!-- Right Column: Order Summary & Checkout -->
       <div class="checkout-column">
-        <section class="checkout-section" aria-labelledby="checkout-heading">
-          <div class="section-header">
-            <h2 id="checkout-heading">Order Summary &amp; Checkout</h2>
-          </div>
+        <aside class="sticky-sidebar">
+          <section class="checkout-section" aria-labelledby="checkout-heading">
+            <div class="section-header">
+              <div>
+                <span class="section-eyebrow">TRANSACTION REGISTER</span>
+                <h2 id="checkout-heading">Summary &amp; Checkout</h2>
+              </div>
+            </div>
 
-          <!-- Order Summary Breakdown -->
-          <div class="summary-card" aria-labelledby="summary-card-heading">
-            <h3 id="summary-card-heading" class="summary-title">Order Breakdown</h3>
-            <div id="summary-breakdown" class="summary-breakdown">
-              <div class="summary-empty-msg" id="summary-empty-msg">No items in cart</div>
+            <!-- Order Summary Breakdown -->
+            <div class="summary-card" aria-labelledby="summary-card-heading">
+              <h3 id="summary-card-heading" class="summary-title">Order Breakdown</h3>
+              <div id="summary-breakdown" class="summary-breakdown">
+                <div class="summary-empty-msg" id="summary-empty-msg">No items in cart</div>
+              </div>
+              <div class="summary-divider"></div>
+              <div class="summary-row total-row">
+                <span class="total-label">Total Amount:</span>
+                <span class="total-value" id="order-total" aria-live="polite">₹0</span>
+              </div>
+              <div class="summary-row qty-row">
+                <span class="qty-label">Total Units:</span>
+                <span class="qty-value" id="order-total-qty">0</span>
+              </div>
             </div>
-            <div class="summary-divider"></div>
-            <div class="summary-row total-row">
-              <span class="total-label">Total Amount:</span>
-              <span class="total-value" id="order-total" aria-live="polite">₹0</span>
-            </div>
-            <div class="summary-row qty-row">
-              <span class="qty-label">Total Units:</span>
-              <span class="qty-value" id="order-total-qty">0</span>
-            </div>
-          </div>
 
-          <!-- Customer Information & Checkout Form -->
-          <form id="checkout-form" class="checkout-form" novalidate>
-            <div class="form-group">
-              <label for="customer-name" class="form-label">
-                Customer Name <span class="required" aria-hidden="true">*</span>
-              </label>
-              <input 
-                type="text" 
-                id="customer-name" 
-                name="customerName" 
-                class="form-input" 
-                placeholder="e.g. Alex Morgan"
-                autocomplete="name"
-                aria-required="true"
-                aria-describedby="validation-message-area"
+            <!-- Customer Information & Checkout Form -->
+            <form id="checkout-form" class="checkout-form" novalidate>
+              <div class="form-group">
+                <label for="customer-name" class="form-label">
+                  Customer Name <span class="required" aria-hidden="true">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <input 
+                    type="text" 
+                    id="customer-name" 
+                    name="customerName" 
+                    class="form-input" 
+                    placeholder="e.g. Alex Morgan"
+                    autocomplete="name"
+                    aria-required="true"
+                    aria-describedby="validation-message-area"
+                  >
+                  <svg class="input-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Validation Messages Area -->
+              <div 
+                id="validation-message-area" 
+                class="validation-message-area" 
+                role="alert" 
+                aria-live="assertive"
               >
-            </div>
+                <!-- Error messages injected here if validation fails -->
+              </div>
 
-            <!-- Validation Messages Area -->
+              <!-- Checkout Action Button -->
+              <button 
+                type="submit" 
+                id="place-order-btn" 
+                class="btn btn-primary btn-block btn-lg"
+              >
+                <span>Place Order</span>
+                <svg class="btn-check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+              <p class="checkout-note">Synthetic test session. No real monetary transactions will occur.</p>
+            </form>
+
+            <!-- Order Confirmation Area -->
             <div 
-              id="validation-message-area" 
-              class="validation-message-area" 
-              role="alert" 
-              aria-live="assertive"
+              id="confirmation-section" 
+              class="confirmation-section" 
+              role="region" 
+              aria-label="Order Confirmation" 
+              style="display: none;"
             >
-              <!-- Error message injected here if validation fails -->
+              <!-- Confirmation details injected here upon valid checkout -->
             </div>
-
-            <!-- Checkout Action -->
-            <button 
-              type="submit" 
-              id="place-order-btn" 
-              class="btn btn-primary btn-block"
-            >
-              Place Order
-            </button>
-          </form>
-
-          <!-- Order Confirmation Area -->
-          <div 
-            id="confirmation-section" 
-            class="confirmation-section" 
-            role="region" 
-            aria-label="Order Confirmation" 
-            style="display: none;"
-          >
-            <!-- Confirmation details injected here upon valid checkout -->
-          </div>
-        </section>
+          </section>
+        </aside>
       </div>
 
     </div>
   </main>
 
-  <!-- Live Announcer Region for screen readers -->
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Screen Reader Live Announcer Region -->
   <div id="sr-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
   <!-- Footer -->
   <footer class="site-footer" role="contentinfo">
     <div class="footer-container">
-      <p>&copy; 2026 GameGear Storefront — SDET Engineering Demonstration. Synthetic test data only.</p>
+      <div class="footer-brand">
+        <span class="brand-logo sm" aria-hidden="true">GG</span>
+        <span class="footer-brand-name">GAMEGEAR 2.0</span>
+      </div>
+      <p class="footer-text">&copy; 2026 GameGear Storefront &bull; Fynd Hiring Hackathon SDET Track Demonstration. Synthetic test data only.</p>
+      <div class="footer-tech">
+        <span>Vanilla JS &bull; Playwright &bull; Pytest &bull; CSS Custom Properties</span>
+      </div>
     </div>
   </footer>
 

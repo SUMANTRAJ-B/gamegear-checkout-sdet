@@ -2,8 +2,8 @@
 
 **Project Name:** GameGear — Minimal Gaming Accessories Checkout  
 **Track:** Fynd Hiring Hackathon 2026 | SDET Intern Track  
-**Report Generated:** 2026-11-23 19:05:25  
-**Execution Duration:** 7.08 seconds  
+**Report Generated:** 2026-11-23 19:36:04  
+**Execution Duration:** 9.93 seconds  
 **Overall Status:** **PASSED**
 
 ---
@@ -25,8 +25,8 @@
 
 | Metric | Count |
 | :--- | :--- |
-| **Total Tests Collected** | 9 |
-| **Passed** | 9 |
+| **Total Tests Collected** | 14 |
+| **Passed** | 14 |
 | **Failed** | 0 |
 | **Errors** | 0 |
 | **Skipped** | 0 |
@@ -38,15 +38,20 @@
 
 | Test Case Name | Duration (s) | Status |
 | :--- | :--- | :--- |
-| `test_mandatory_1_successful_checkout` | 1.95s | ✅ PASSED |
-| `test_mandatory_2_required_field_validation` | 0.31s | ✅ PASSED |
-| `test_mandatory_3_quantity_calculation` | 0.24s | ✅ PASSED |
-| `test_regression_empty_cart_submission_blocked` | 0.20s | ✅ PASSED |
-| `test_regression_rapid_double_click_duplicate_prevention` | 0.30s | ✅ PASSED |
-| `test_regression_product_removal` | 0.24s | ✅ PASSED |
-| `test_regression_quantity_minimum_bound` | 0.20s | ✅ PASSED |
-| `test_regression_add_existing_product_increments_quantity` | 0.23s | ✅ PASSED |
-| `test_regression_multi_product_calculation` | 1.33s | ✅ PASSED |
+| `test_mandatory_1_successful_checkout` | 1.99s | ✅ PASSED |
+| `test_mandatory_2_required_field_validation` | 0.44s | ✅ PASSED |
+| `test_mandatory_3_quantity_calculation` | 0.32s | ✅ PASSED |
+| `test_regression_empty_cart_submission_blocked` | 0.26s | ✅ PASSED |
+| `test_regression_rapid_double_click_duplicate_prevention` | 0.42s | ✅ PASSED |
+| `test_regression_product_removal` | 0.32s | ✅ PASSED |
+| `test_regression_quantity_minimum_bound` | 0.26s | ✅ PASSED |
+| `test_regression_add_existing_product_increments_quantity` | 0.30s | ✅ PASSED |
+| `test_regression_multi_product_calculation` | 0.32s | ✅ PASSED |
+| `test_interaction_theme_switching` | 0.31s | ✅ PASSED |
+| `test_interaction_product_details_disclosure` | 0.36s | ✅ PASSED |
+| `test_interaction_toast_feedback_on_cart_addition` | 0.27s | ✅ PASSED |
+| `test_interaction_mobile_navigation_drawer` | 0.30s | ✅ PASSED |
+| `test_interaction_responsive_viewports_and_evidence` | 1.83s | ✅ PASSED |
 
 ---
 
@@ -84,8 +89,12 @@
 
 The following genuine screenshot evidence was captured during execution:
 
+- [`cart-with-items.png`](evidence/cart-with-items.png)
 - [`checkout-success.png`](evidence/checkout-success.png)
+- [`desktop-storefront.png`](evidence/desktop-storefront.png)
 - [`manual-verification-double-click.png`](evidence/manual-verification-double-click.png)
+- [`mobile-storefront.png`](evidence/mobile-storefront.png)
+- [`product-interaction.png`](evidence/product-interaction.png)
 - [`rapid-double-click-verification.png`](evidence/rapid-double-click-verification.png)
 - [`validation-error-state.png`](evidence/validation-error-state.png)
 
