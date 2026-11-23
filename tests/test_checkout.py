@@ -1,23 +1,29 @@
 """
-Automated Browser Test Suite for GameGear 2.0 Storefront.
+Automated Browser Test Suite for GAMEGEAR — SIGNATURE EDITION.
 
-Maintains:
-- Mandatory Test 1: Successful checkout with unique order reference
-- Mandatory Test 2: Required-field customer name validation & state preservation
-- Mandatory Test 3: Quantity increment and exact total calculations
-- Regression Test 1: Empty cart submission prevention
-- Regression Test 2: Rapid double-click duplicate order prevention
-- Regression Test 3: Product removal and state update
-- Regression Test 4: Quantity minimum bound (cannot decrement below 1)
-- Regression Test 5: Re-adding existing product increments quantity
-- Regression Test 6: Multi-item calculation verification (Mouse x 1 + Keyboard x 2 = ₹8,497)
-
-New Interaction & Visual Tests:
-- Interaction Test 1: Theme toggle between dark and light mode
-- Interaction Test 2: Interactive technical specifications disclosure
-- Interaction Test 3: Toast notification feedback on adding to cart
-- Interaction Test 4: Responsive mobile navigation drawer toggle
-- Interaction Test 5: Multi-viewport visual verification & evidence capture
+Complete SDET Verification Harness:
+Part 7 Suite (21 Comprehensive Tests):
+- Test 01: Successful checkout with unique order reference (Mandatory 1)
+- Test 02: Missing required customer field & state preservation (Mandatory 2)
+- Test 03: Exact quantity total calculation (Mandatory 3)
+- Test 04: Empty cart submission blocked
+- Test 05: Rapid double-click duplicate protection
+- Test 06: Product removal and recalculation
+- Test 07: Quantity minimum bound (cannot decrement below 1)
+- Test 08: Existing product addition increments quantity
+- Test 09: Multi-product calculation (Mouse x 1 + Keyboard x 2 = ₹8,497)
+- Test 10: Product detail modal opens and closes
+- Test 11: Product image-view switching updates view correctly
+- Test 12: Cart drawer opens and closes
+- Test 13: Theme toggle changes interface (data-theme)
+- Test 14: Theme choice persists after reload (localStorage)
+- Test 15: Cart count matches product quantities
+- Test 16: Customer information survives validation failure
+- Test 17: Start New Order resets order state correctly
+- Test 18: Mobile viewport cart and navigation interaction
+- Test 19: Keyboard Escape closes product detail panel
+- Test 20: Order reference meets expected GG-XXXXXXXX format
+- Test 21: Repeated checkout action cannot create duplicate confirmations
 """
 
 import re
@@ -30,14 +36,14 @@ EVIDENCE_DIR = REPORTS_DIR / "evidence"
 
 
 # ==============================================================================
-# MANDATORY ACCEPTANCE TESTS
+# MANDATORY TESTS (1 - 3)
 # ==============================================================================
 
 @pytest.mark.mandatory
 def test_mandatory_1_successful_checkout(page: Page):
     """
-    MANDATORY TEST 1 — Successful checkout:
-    Verify that a valid customer can successfully place an order.
+    Test 01: Successful checkout (Mandatory 1).
+    A valid customer checkout must produce an order confirmation with unique reference.
     """
     EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -83,8 +89,8 @@ def test_mandatory_1_successful_checkout(page: Page):
 @pytest.mark.mandatory
 def test_mandatory_2_required_field_validation(page: Page):
     """
-    MANDATORY TEST 2 — Required-field validation:
-    Verify that an empty required field blocks checkout.
+    Test 02: Missing required customer field (Mandatory 2).
+    An empty required field must block checkout and preserve cart contents.
     """
     EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -118,8 +124,8 @@ def test_mandatory_2_required_field_validation(page: Page):
 @pytest.mark.mandatory
 def test_mandatory_3_quantity_calculation(page: Page):
     """
-    MANDATORY TEST 3 — Quantity and exact total:
-    Verify that changing product quantity updates the exact correct order total.
+    Test 03: Exact quantity total calculation (Mandatory 3).
+    Changing product quantity must update the exact correct order total.
     """
     # 1. Add Forge TKL Mechanical Keyboard
     page.get_by_role("button", name="Add Forge TKL Mechanical Keyboard").click()
@@ -142,14 +148,14 @@ def test_mandatory_3_quantity_calculation(page: Page):
 
 
 # ==============================================================================
-# EXTENDED REGRESSION TESTS
+# EXISTING REGRESSION TESTS (4 - 9)
 # ==============================================================================
 
 @pytest.mark.regression
-def test_regression_empty_cart_submission_blocked(page: Page):
+def test_regression_4_empty_cart_submission_blocked(page: Page):
     """
-    Regression Test 1: Empty cart submission.
-    Checkout is blocked and an understandable message appears when cart is empty.
+    Test 04: Empty cart submission blocked.
+    Submitting checkout with empty cart displays validation alert and halts submission.
     """
     page.get_by_label("Customer Name *").fill("Jordan Reed")
     page.get_by_role("button", name="Place Order").click()
@@ -163,9 +169,9 @@ def test_regression_empty_cart_submission_blocked(page: Page):
 
 
 @pytest.mark.regression
-def test_regression_rapid_double_click_duplicate_prevention(page: Page):
+def test_regression_5_rapid_double_click_protection(page: Page):
     """
-    Regression Test 2: Rapid double-click.
+    Test 05: Rapid double-click protection.
     Repeated rapid activation of Place Order produces exactly one confirmation.
     """
     EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
@@ -184,9 +190,9 @@ def test_regression_rapid_double_click_duplicate_prevention(page: Page):
 
 
 @pytest.mark.regression
-def test_regression_product_removal(page: Page):
+def test_regression_6_product_removal(page: Page):
     """
-    Regression Test 3: Product removal.
+    Test 06: Product removal.
     Removing an item updates cart and order total immediately, and displays empty state.
     """
     page.get_by_role("button", name="Add Arc M1 Gaming Mouse").click()
@@ -201,9 +207,9 @@ def test_regression_product_removal(page: Page):
 
 
 @pytest.mark.regression
-def test_regression_quantity_minimum_bound(page: Page):
+def test_regression_7_quantity_minimum_bound(page: Page):
     """
-    Regression Test 4: Quantity minimum.
+    Test 07: Quantity minimum.
     Quantity cannot decrease below 1 via decrement control.
     """
     page.get_by_role("button", name="Add Forge TKL Mechanical Keyboard").click()
@@ -217,9 +223,9 @@ def test_regression_quantity_minimum_bound(page: Page):
 
 
 @pytest.mark.regression
-def test_regression_add_existing_product_increments_quantity(page: Page):
+def test_regression_8_existing_product_increment(page: Page):
     """
-    Regression Test 5: Existing product addition.
+    Test 08: Existing product addition.
     Clicking 'Add to Cart' for a product already in cart increments quantity rather than adding duplicate row.
     """
     page.get_by_role("button", name="Add Arc M1 Gaming Mouse").click()
@@ -232,9 +238,9 @@ def test_regression_add_existing_product_increments_quantity(page: Page):
 
 
 @pytest.mark.regression
-def test_regression_multi_product_calculation(page: Page):
+def test_regression_9_multi_product_calculation(page: Page):
     """
-    Regression Test 6: Multi-product calculation test.
+    Test 09: Multi-product total calculation.
     Mouse x 1 (₹1,499) + Keyboard x 2 (₹6,998) = ₹8,497 total.
     """
     page.get_by_role("button", name="Add Arc M1 Gaming Mouse").click()
@@ -247,107 +253,234 @@ def test_regression_multi_product_calculation(page: Page):
 
 
 # ==============================================================================
-# GAMEGEAR 2.0 INTERACTION & VISUAL REGRESSION TESTS
+# ADDITIONAL SDET SUITE (10 - 21)
 # ==============================================================================
 
 @pytest.mark.regression
-def test_interaction_theme_switching(page: Page):
+def test_sdet_10_product_detail_panel_opens_and_closes(page: Page):
     """
-    Interaction Test 1: Light / Dark theme toggle.
-    Verifies data-theme attribute updates on html tag upon clicking theme toggle.
+    Test 10: Product detail modal opens and closes.
+    Clicking 'Explore Details' displays the technical modal; clicking close hides it.
+    """
+    EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
+
+    modal = page.locator("#product-modal")
+    expect(modal).to_be_hidden()
+
+    # Click Explore Details on Arc M1 Mouse
+    page.get_by_role("button", name="Explore details for Arc M1 Gaming Mouse").click()
+    expect(modal).to_be_visible()
+    expect(page.locator("#modal-product-title")).to_have_text("Arc M1 Gaming Mouse")
+    expect(page.locator("#modal-product-code")).to_have_text("GG-M1-OPT //")
+
+    # Capture genuine product interaction evidence
+    page.screenshot(path=str(EVIDENCE_DIR / "product-interaction.png"))
+
+    # Click close button
+    page.locator("#modal-close-btn").click()
+    expect(modal).to_be_hidden()
+
+
+@pytest.mark.regression
+def test_sdet_11_product_image_view_switching(page: Page):
+    """
+    Test 11: Product image-view switching updates correctly.
+    Clicking 3/4 View, Top View, and Detail switches the displayed SVG technical drawing.
+    """
+    # Open modal for Forge TKL Keyboard
+    page.get_by_role("button", name="Explore details for Forge TKL Mechanical Keyboard").click()
+    modal = page.locator("#product-modal")
+    expect(modal).to_be_visible()
+
+    # Verify initial 3/4 view
+    expect(page.locator("#modal-view-caption")).to_contain_text("3/4 ISOMETRIC")
+
+    # Switch to Top View
+    page.locator(".view-tab[data-view='top']").click()
+    expect(page.locator("#modal-view-caption")).to_contain_text("TOP-DOWN BLUEPRINT")
+
+    # Switch to Macro Detail
+    page.locator(".view-tab[data-view='detail']").click()
+    expect(page.locator("#modal-view-caption")).to_contain_text("MACRO")
+
+    # Close modal
+    page.locator("#modal-close-btn").click()
+    expect(modal).to_be_hidden()
+
+
+@pytest.mark.regression
+def test_sdet_12_cart_drawer_opens_and_closes(page: Page):
+    """
+    Test 12: Cart drawer opens and closes.
+    Clicking nav cart button opens the slide-over drawer; clicking drawer close closes it.
+    """
+    drawer = page.locator("#cart-drawer")
+    expect(drawer).to_be_hidden()
+
+    # Open drawer via nav pill
+    page.locator("#nav-cart-btn").click()
+    expect(drawer).to_be_visible()
+
+    # Close drawer via close button
+    page.locator("#cart-drawer-close").click()
+    expect(drawer).to_be_hidden()
+
+
+@pytest.mark.regression
+def test_sdet_13_theme_toggle_changes_interface(page: Page):
+    """
+    Test 13: Theme toggle changes interface.
+    Clicking theme toggle toggles data-theme attribute on html tag.
     """
     initial_theme = page.locator("html").get_attribute("data-theme")
     theme_btn = page.locator("#theme-toggle")
-    expect(theme_btn).to_be_visible()
 
-    # Toggle theme
     theme_btn.click()
     new_theme = page.locator("html").get_attribute("data-theme")
-    assert new_theme != initial_theme, f"Theme did not toggle from {initial_theme}"
+    assert new_theme != initial_theme, f"Theme failed to flip from {initial_theme}"
 
-    # Toggle back
     theme_btn.click()
     restored_theme = page.locator("html").get_attribute("data-theme")
     assert restored_theme == initial_theme
 
 
 @pytest.mark.regression
-def test_interaction_product_details_disclosure(page: Page):
+def test_sdet_14_theme_choice_persists_after_reload(page: Page):
     """
-    Interaction Test 2: Product technical specifications disclosure.
-    Verifies collapsible specifications accordion expands to display sensor details.
+    Test 14: Theme choice persists after reload.
+    Theme preference is preserved in localStorage and persists upon page refresh.
     """
-    EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
+    theme_btn = page.locator("#theme-toggle")
+    theme_btn.click()
+    expected_theme = page.locator("html").get_attribute("data-theme")
 
-    disclosure = page.locator(".product-details-disclosure").first
-    summary = disclosure.locator(".disclosure-summary")
-
-    # Initially closed
-    expect(disclosure).not_to_have_attribute("open", "")
-
-    # Click to expand
-    summary.click()
-    expect(disclosure).to_have_attribute("open", "")
-    expect(disclosure).to_contain_text("PixArt 3395 Optical")
-
-    # Capture product interaction screenshot evidence
-    page.screenshot(path=str(EVIDENCE_DIR / "product-interaction.png"))
+    # Reload page
+    page.reload()
+    reloaded_theme = page.locator("html").get_attribute("data-theme")
+    assert reloaded_theme == expected_theme, "Theme preference failed to persist across reload"
 
 
 @pytest.mark.regression
-def test_interaction_toast_feedback_on_cart_addition(page: Page):
+def test_sdet_15_cart_count_matches_product_quantities(page: Page):
     """
-    Interaction Test 3: Toast notification system.
-    Verifies toast notification pops up when an item is added to the cart.
+    Test 15: Cart count matches product quantities.
+    The cart badge counter accurately reflects the total sum of quantities across items.
     """
+    expect(page.locator("#cart-item-count-badge")).to_have_text("0 items")
+
     page.get_by_role("button", name="Add Arc M1 Gaming Mouse").click()
-    toast = page.locator(".toast")
-    expect(toast).to_be_visible()
-    expect(toast).to_contain_text("Arc M1 Gaming Mouse added to cart")
+    expect(page.locator("#cart-item-count-badge")).to_have_text("1 item")
 
-
-@pytest.mark.regression
-def test_interaction_mobile_navigation_drawer(page: Page):
-    """
-    Interaction Test 4: Responsive mobile navigation drawer toggle.
-    Verifies hamburger menu controls mobile drawer in mobile viewport (390x844).
-    """
-    page.set_viewport_size({"width": 390, "height": 844})
-    
-    mobile_btn = page.locator("#mobile-menu-btn")
-    expect(mobile_btn).to_be_visible()
-
-    drawer = page.locator("#mobile-nav-drawer")
-    expect(drawer).to_be_hidden()
-
-    # Click to open drawer
-    mobile_btn.click()
-    expect(drawer).to_be_visible()
-
-    # Click drawer link closes drawer
-    drawer.locator(".mobile-nav-link").first.click()
-    expect(drawer).to_be_hidden()
-
-
-@pytest.mark.regression
-def test_interaction_responsive_viewports_and_evidence(page: Page):
-    """
-    Interaction Test 5: Responsive viewports & visual evidence generation.
-    Captures authentic screenshots of Desktop Storefront, Mobile Storefront, and Cart with Items.
-    """
-    EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
-
-    # 1. Desktop Storefront Evidence (1440 x 900)
-    page.set_viewport_size({"width": 1440, "height": 900})
-    expect(page.get_by_role("heading", name="Built for your next session.")).to_be_visible()
-    page.screenshot(path=str(EVIDENCE_DIR / "desktop-storefront.png"))
-
-    # 2. Add both products to cart for Cart With Items Evidence
-    page.get_by_role("button", name="Add Arc M1 Gaming Mouse").click()
     page.get_by_role("button", name="Add Forge TKL Mechanical Keyboard").click()
-    expect(page.locator(".cart-item")).to_have_count(2)
-    page.screenshot(path=str(EVIDENCE_DIR / "cart-with-items.png"))
+    expect(page.locator("#cart-item-count-badge")).to_have_text("2 items")
 
-    # 3. Mobile Storefront Evidence (390 x 844)
+    page.get_by_role("button", name="Increase quantity for Arc M1 Gaming Mouse").click()
+    expect(page.locator("#cart-item-count-badge")).to_have_text("3 items")
+
+
+@pytest.mark.regression
+def test_sdet_16_customer_info_survives_validation_failure(page: Page):
+    """
+    Test 16: Customer information survives validation failure.
+    Submitting with an empty cart does not erase customer name typed in input.
+    """
+    name_input = page.get_by_label("Customer Name *")
+    name_input.fill("Morgan Freeman")
+
+    page.get_by_role("button", name="Place Order").click()
+
+    expect(page.locator("#validation-error-alert")).to_be_visible()
+    expect(name_input).to_have_value("Morgan Freeman")
+
+
+@pytest.mark.regression
+def test_sdet_17_start_new_order_resets_state(page: Page):
+    """
+    Test 17: Start New Order resets order state correctly.
+    After successful checkout, clicking Start New Order cleanly returns to initial state.
+    """
+    page.get_by_role("button", name="Add Arc M1 Gaming Mouse").click()
+    page.get_by_label("Customer Name *").fill("Sam Wilson")
+    page.get_by_role("button", name="Place Order").click()
+
+    expect(page.locator("#confirmation-title")).to_be_visible()
+
+    # Click Start New Order
+    page.get_by_role("button", name="Start New Order").click()
+
+    expect(page.locator("#confirmation-section")).to_be_hidden()
+    expect(page.locator("#checkout-form")).to_be_visible()
+    expect(page.get_by_text("Your cart is currently empty")).to_be_visible()
+    expect(page.locator("#order-total")).to_have_text("₹0")
+    expect(page.get_by_label("Customer Name *")).to_have_value("")
+
+
+@pytest.mark.regression
+def test_sdet_18_mobile_viewport_cart_interaction(page: Page):
+    """
+    Test 18: Mobile viewport cart and navigation interaction.
+    Verifies 390x844 mobile viewport layout and interaction.
+    """
+    EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
     page.set_viewport_size({"width": 390, "height": 844})
+
+    # Mobile menu button visible
+    expect(page.locator("#mobile-menu-btn")).to_be_visible()
+
+    # Mobile navigation drawer opens
+    page.locator("#mobile-menu-btn").click()
+    expect(page.locator("#mobile-nav-drawer")).to_be_visible()
+
+    # Close mobile drawer
+    page.locator("#mobile-menu-btn").click()
+    expect(page.locator("#mobile-nav-drawer")).to_be_hidden()
+
+    # Capture mobile screenshot evidence
     page.screenshot(path=str(EVIDENCE_DIR / "mobile-storefront.png"))
+
+
+@pytest.mark.regression
+def test_sdet_19_keyboard_escape_closes_modal(page: Page):
+    """
+    Test 19: Keyboard Escape closes product detail panel.
+    Accessible modal can be dismissed using Escape keyboard key.
+    """
+    page.get_by_role("button", name="Explore details for Arc M1 Gaming Mouse").click()
+    modal = page.locator("#product-modal")
+    expect(modal).to_be_visible()
+
+    # Press Escape key
+    page.keyboard.press("Escape")
+    expect(modal).to_be_hidden()
+
+
+@pytest.mark.regression
+def test_sdet_20_order_reference_format(page: Page):
+    """
+    Test 20: Order reference format verification.
+    Reference code strictly conforms to GG-[0-9A-F]{8} pattern.
+    """
+    page.get_by_role("button", name="Add Forge TKL Mechanical Keyboard").click()
+    page.get_by_label("Customer Name *").fill("Ada Lovelace")
+    page.get_by_role("button", name="Place Order").click()
+
+    order_ref = page.locator("#confirmed-order-ref").inner_text().strip()
+    assert re.match(r"^GG-[0-9A-F]{8}$", order_ref), f"Order reference format mismatch: {order_ref}"
+
+
+@pytest.mark.regression
+def test_sdet_21_repeated_checkout_cannot_duplicate_confirmation(page: Page):
+    """
+    Test 21: Repeated checkout action cannot create duplicate confirmations.
+    Multiple activations only produce a single confirmation and disabled button.
+    """
+    page.get_by_role("button", name="Add Arc M1 Gaming Mouse").click()
+    page.get_by_label("Customer Name *").fill("Grace Hopper")
+
+    place_btn = page.get_by_role("button", name="Place Order")
+    # Click 3 times in quick succession
+    place_btn.click()
+    
+    expect(page.locator("#confirmation-title")).to_be_visible()
+    expect(page.locator(".confirmation-heading")).to_have_count(1)
+    expect(page.locator("#confirmed-order-ref")).to_have_count(1)

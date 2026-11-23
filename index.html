@@ -3,29 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GameGear — Premium Gaming Accessories Storefront</title>
-  <meta name="description" content="Minimal, precision-engineered gaming peripherals. Clean checkout experience with verified browser automation suite.">
+  <title>GameGear — Signature Edition // Equipment Studio</title>
+  <meta name="description" content="Precision-engineered gaming hardware designed around tactile consistency and technical control.">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-  <!-- Header / Navigation Bar -->
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <!-- Top System Bar -->
+  <aside class="system-bar" aria-label="System Notice">
+    <div class="system-bar-container">
+      <span class="system-tag"><span class="signal-dot" aria-hidden="true"></span> STUDIO PROTOTYPE BUILD 2026</span>
+      <span class="system-status">SYNTHETIC BENCHMARK STOREFRONT &bull; NO REAL PAYMENTS</span>
+      <span class="system-coord">SYS // 28.6139° N, 77.2090° E</span>
+    </div>
+  </aside>
+
+  <!-- Studio Navigation Bar -->
   <header class="site-header" role="banner">
     <div class="header-container">
-      <a href="#main-content" class="skip-to-content">Skip to content</a>
       
+      <!-- Brand & Studio Identity -->
       <div class="brand">
-        <a href="#" class="brand-link" aria-label="GameGear Home">
-          <span class="brand-logo" aria-hidden="true">GG</span>
-          <h1 class="brand-name">GAMEGEAR</h1>
+        <a href="#" class="brand-link" aria-label="GameGear Equipment Studio Home">
+          <span class="brand-badge" aria-hidden="true">GG</span>
+          <div class="brand-text-block">
+            <h1 class="brand-name">GAMEGEAR</h1>
+            <span class="brand-subtitle">EQUIPMENT STUDIO</span>
+          </div>
         </a>
       </div>
 
-      <!-- Desktop Navigation -->
-      <nav class="site-nav" id="site-nav" aria-label="Main Navigation">
+      <!-- Main Navigation Links -->
+      <nav class="site-nav" id="site-nav" aria-label="Primary Navigation">
         <ul class="nav-links">
-          <li><a href="#collection" class="nav-link">Hardware</a></li>
-          <li><a href="#technical-specs" class="nav-link">Engineering</a></li>
-          <li><a href="#cart-section" class="nav-link">Order Details</a></li>
+          <li><a href="#collection" class="nav-link">Hardware Collection</a></li>
+          <li><a href="#specs-section" class="nav-link">Engineering Specs</a></li>
+          <li><a href="#studio-about" class="nav-link">About Studio</a></li>
+          <li><a href="#cart-section" class="nav-link">Order Register</a></li>
         </ul>
       </nav>
 
@@ -35,12 +50,12 @@
         <button 
           type="button" 
           id="theme-toggle" 
-          class="icon-btn theme-toggle-btn" 
+          class="ctrl-btn theme-toggle-btn" 
           aria-label="Toggle light or dark theme"
-          title="Toggle color theme"
+          title="Toggle light or dark theme"
         >
           <span class="theme-icon sun-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
               <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -53,46 +68,53 @@
             </svg>
           </span>
           <span class="theme-icon moon-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
           </span>
         </button>
 
-        <!-- Cart Quick Anchor -->
-        <a href="#cart-section" class="cart-pill-btn" id="nav-cart-btn" aria-label="View Shopping Cart">
-          <svg class="cart-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <path d="M16 10a4 4 0 0 1-8 0"></path>
+        <!-- Cart Trigger Pill -->
+        <button 
+          type="button"
+          class="cart-pill-btn" 
+          id="nav-cart-btn" 
+          aria-label="Open Shopping Cart Drawer"
+          aria-controls="cart-drawer"
+          aria-expanded="false"
+        >
+          <svg class="cart-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="18" rx="2" />
+            <line x1="2" y1="8" x2="22" y2="8" />
+            <line x1="9" y1="13" x2="15" y2="13" />
           </svg>
-          <span class="cart-pill-text">Cart</span>
-          <span id="cart-item-count-badge" class="badge badge-accent">0 items</span>
-        </a>
+          <span class="cart-pill-label">Cart</span>
+          <span id="cart-item-count-badge" class="badge">0 items</span>
+        </button>
 
-        <!-- Mobile Menu Toggle Button -->
+        <!-- Mobile Navigation Toggle -->
         <button 
           type="button" 
           id="mobile-menu-btn" 
-          class="icon-btn mobile-menu-btn" 
+          class="ctrl-btn mobile-menu-btn" 
           aria-expanded="false" 
           aria-controls="mobile-nav-drawer"
           aria-label="Toggle mobile menu"
         >
           <svg class="menu-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="8" x2="21" y2="8" />
+            <line x1="3" y1="16" x2="21" y2="16" />
           </svg>
         </button>
       </div>
     </div>
 
-    <!-- Mobile Drawer Navigation -->
+    <!-- Collapsible Mobile Drawer -->
     <div id="mobile-nav-drawer" class="mobile-nav-drawer" hidden>
       <ul class="mobile-nav-list">
         <li><a href="#collection" class="mobile-nav-link">Hardware Collection</a></li>
-        <li><a href="#technical-specs" class="mobile-nav-link">Engineering Specs</a></li>
+        <li><a href="#specs-section" class="mobile-nav-link">Engineering Specs</a></li>
+        <li><a href="#studio-about" class="mobile-nav-link">About Studio</a></li>
         <li><a href="#cart-section" class="mobile-nav-link">Cart &amp; Checkout</a></li>
       </ul>
     </div>
@@ -101,111 +123,148 @@
   <!-- Editorial Hero Section -->
   <section class="hero-section" aria-labelledby="hero-title">
     <div class="hero-container">
-      <div class="hero-text-content">
+      
+      <div class="hero-editorial">
         <div class="hero-eyebrow">
-          <span class="status-indicator-dot" aria-hidden="true"></span>
-          <span>COMPETITIVE SERIES 2026 &bull; ESPORTS GRADE</span>
-        </div>
-        <h2 id="hero-title" class="hero-title">Built for your next session.</h2>
-        <p class="hero-subtitle">
-          Precision ergonomics, zero-latency wireless connectivity, and calibrated mechanical tactile feedback. 
-          Hardware crafted without compromise for focused performance.
-        </p>
-        <div class="hero-actions">
-          <a href="#collection" class="btn btn-primary btn-hero">
-            Explore Collection
-            <svg class="btn-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
-          <a href="#cart-section" class="btn btn-ghost btn-hero">Quick Checkout</a>
+          <span class="studio-tag">GAMEGEAR / EQUIPMENT STUDIO</span>
+          <span class="series-tag">SERIES 01 // REF-2026</span>
         </div>
         
-        <!-- Technical Spec Highlights -->
-        <div class="hero-metrics" id="technical-specs">
-          <div class="metric-item">
-            <span class="metric-val">&lt;0.2ms</span>
-            <span class="metric-label">Wireless Latency</span>
+        <h2 id="hero-title" class="hero-title">BUILT FOR CONTROL.</h2>
+        
+        <p class="hero-subtitle">
+          Equipment designed around precision, consistency and the details that matter. 
+          Engineered for esports competitors who require zero latency, calibrated mechanical switches, and unwavering ergonomics.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#collection" class="btn btn-signal btn-hero">
+            <span>Explore Equipment</span>
+            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+          <a href="#cart-section" class="btn btn-outline btn-hero">Direct Checkout</a>
+        </div>
+
+        <div class="hero-meta-strip" id="specs-section">
+          <div class="meta-cell">
+            <span class="meta-label">LATENCY BENCHMARK</span>
+            <span class="meta-val">&lt; 0.20 ms</span>
           </div>
-          <div class="metric-divider" aria-hidden="true"></div>
-          <div class="metric-item">
-            <span class="metric-val">54g</span>
-            <span class="metric-label">Ultralight Chassis</span>
+          <div class="meta-cell">
+            <span class="meta-label">OPTICAL SENSING</span>
+            <span class="meta-val">26,000 DPI</span>
           </div>
-          <div class="metric-divider" aria-hidden="true"></div>
-          <div class="metric-item">
-            <span class="metric-val">100M</span>
-            <span class="metric-label">Optical Actuation</span>
+          <div class="meta-cell">
+            <span class="meta-label">KEYBOARD ACTUATION</span>
+            <span class="meta-val">55cN TACTILE</span>
           </div>
         </div>
       </div>
 
-      <!-- Hero Visual Art -->
-      <div class="hero-visual" aria-hidden="true">
-        <div class="hero-art-container">
-          <!-- Stylized Isometric Hardware Composition SVG -->
-          <svg class="hero-art-svg" viewBox="0 0 520 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Hero Visual Industrial Art -->
+      <div class="hero-composition" aria-hidden="true">
+        <div class="blueprint-canvas">
+          <svg class="blueprint-svg" viewBox="0 0 540 380" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="heroArtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="var(--accent-lime)" stop-opacity="0.15" />
-                <stop offset="100%" stop-color="var(--accent-lime)" stop-opacity="0.0" />
-              </linearGradient>
+              <pattern id="gridPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="var(--hairline-border)" stroke-width="0.5" opacity="0.6"/>
+              </pattern>
             </defs>
-            <rect x="10" y="10" width="500" height="320" rx="16" fill="url(#heroArtGrad)" stroke="var(--border-color)" stroke-width="1.5" />
-            <!-- Keyboard Plate Representation -->
-            <rect x="40" y="45" width="280" height="150" rx="10" fill="var(--bg-card-elevate)" stroke="var(--border-color)" stroke-width="1.5" />
-            <!-- Keyboard Keys Grid Graphic -->
-            <g opacity="0.6">
-              <rect x="52" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="74" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="96" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="118" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="140" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="162" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="184" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="206" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="228" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="250" y="58" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="272" y="58" width="36" height="18" rx="3" fill="var(--accent-lime)" fill-opacity="0.25" stroke="var(--accent-lime)" />
+            <rect width="100%" height="100%" fill="url(#gridPattern)" />
+            <rect x="15" y="15" width="510" height="350" stroke="var(--hairline-border)" stroke-width="1" />
+            
+            <!-- Keyboard Isometric Outline -->
+            <g transform="translate(40, 50)">
+              <rect x="0" y="0" width="310" height="170" rx="4" fill="var(--deep-surface)" stroke="var(--hairline-border)" stroke-width="1.5" />
+              <!-- Keyboard Top Plate Cutout -->
+              <rect x="12" y="12" width="286" height="146" rx="2" fill="var(--paper)" opacity="0.08" stroke="var(--hairline-border)" stroke-width="0.75" />
+              <!-- Keycaps grid representation -->
+              <g fill="var(--card-surface)" stroke="var(--hairline-border)" stroke-width="0.6" opacity="0.85">
+                <!-- Row 1 -->
+                <rect x="18" y="18" width="16" height="12" rx="1.5" />
+                <rect x="38" y="18" width="12" height="12" rx="1.5" />
+                <rect x="54" y="18" width="12" height="12" rx="1.5" />
+                <rect x="70" y="18" width="12" height="12" rx="1.5" />
+                <rect x="86" y="18" width="12" height="12" rx="1.5" />
+                <rect x="106" y="18" width="12" height="12" rx="1.5" />
+                <rect x="122" y="18" width="12" height="12" rx="1.5" />
+                <rect x="138" y="18" width="12" height="12" rx="1.5" />
+                <rect x="154" y="18" width="12" height="12" rx="1.5" />
+                <rect x="174" y="18" width="12" height="12" rx="1.5" />
+                <rect x="190" y="18" width="12" height="12" rx="1.5" />
+                <rect x="206" y="18" width="12" height="12" rx="1.5" />
+                <rect x="222" y="18" width="12" height="12" rx="1.5" />
+                <!-- Nav cluster -->
+                <rect x="246" y="18" width="14" height="12" rx="1.5" />
+                <rect x="264" y="18" width="14" height="12" rx="1.5" />
+                <rect x="282" y="18" width="14" height="12" rx="1.5" stroke="var(--signal-accent)" fill="var(--signal-accent)" fill-opacity="0.25" />
 
-              <rect x="52" y="82" width="26" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="82" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="104" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="126" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="148" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="170" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="192" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="214" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="236" y="82" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="258" y="82" width="50" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+                <!-- Row 2 -->
+                <rect x="18" y="34" width="20" height="14" rx="1.5" />
+                <rect x="42" y="34" width="13" height="14" rx="1.5" />
+                <rect x="59" y="34" width="13" height="14" rx="1.5" />
+                <rect x="76" y="34" width="13" height="14" rx="1.5" />
+                <rect x="93" y="34" width="13" height="14" rx="1.5" />
+                <rect x="110" y="34" width="13" height="14" rx="1.5" />
+                <rect x="127" y="34" width="13" height="14" rx="1.5" />
+                <rect x="144" y="34" width="13" height="14" rx="1.5" />
+                <rect x="161" y="34" width="13" height="14" rx="1.5" />
+                <rect x="178" y="34" width="13" height="14" rx="1.5" />
+                <rect x="195" y="34" width="13" height="14" rx="1.5" />
+                <rect x="212" y="34" width="22" height="14" rx="1.5" />
+                <!-- Nav -->
+                <rect x="246" y="34" width="14" height="14" rx="1.5" />
+                <rect x="264" y="34" width="14" height="14" rx="1.5" />
+                <rect x="282" y="34" width="14" height="14" rx="1.5" />
 
-              <!-- Spacebar row -->
-              <rect x="52" y="106" width="32" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="88" y="106" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="110" y="106" width="98" height="18" rx="3" fill="var(--accent-lime)" fill-opacity="0.35" stroke="var(--accent-lime)" />
-              <rect x="212" y="106" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="234" y="106" width="18" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
-              <rect x="256" y="106" width="52" height="18" rx="3" fill="var(--bg-card)" stroke="var(--border-color)" />
+                <!-- Spacebar Row -->
+                <rect x="18" y="96" width="22" height="16" rx="1.5" />
+                <rect x="44" y="96" width="16" height="16" rx="1.5" />
+                <rect x="64" y="96" width="18" height="16" rx="1.5" />
+                <!-- Spacebar highlight -->
+                <rect x="86" y="96" width="94" height="16" rx="2" fill="var(--signal-accent)" fill-opacity="0.3" stroke="var(--signal-accent)" stroke-width="1.2" />
+                <rect x="184" y="96" width="16" height="16" rx="1.5" />
+                <rect x="204" y="96" width="16" height="16" rx="1.5" />
+                <rect x="224" y="96" width="16" height="16" rx="1.5" />
+                <!-- Inverted T Arrows -->
+                <rect x="264" y="96" width="14" height="14" rx="1.5" />
+                <rect x="246" y="114" width="14" height="14" rx="1.5" />
+                <rect x="264" y="114" width="14" height="14" rx="1.5" />
+                <rect x="282" y="114" width="14" height="14" rx="1.5" />
+              </g>
+              <text x="18" y="148" fill="var(--muted-text)" font-family="monospace" font-size="9" letter-spacing="1">REF 02 // TKL-87 // FORGE ARCHITECTURE</text>
             </g>
-            <!-- Mouse Silhouette Representation -->
-            <g transform="translate(350, 60)">
-              <rect x="10" y="0" width="120" height="190" rx="60" fill="var(--bg-card-elevate)" stroke="var(--border-color)" stroke-width="2" />
-              <!-- Split button seam -->
-              <line x1="70" y1="10" x2="70" y2="85" stroke="var(--border-color)" stroke-width="1.5" />
-              <!-- Scroll wheel -->
-              <rect x="63" y="25" width="14" height="34" rx="7" fill="var(--accent-lime)" fill-opacity="0.4" stroke="var(--accent-lime)" stroke-width="1.5" />
-              <!-- Thumb groove indicator -->
-              <path d="M12 90 C 24 110, 24 140, 12 160" stroke="var(--border-color)" stroke-width="1.5" fill="none" />
-              <!-- Technical coordinate mark -->
-              <circle cx="70" cy="140" r="14" stroke="var(--accent-lime)" stroke-width="1.2" stroke-dasharray="3 3" />
-              <circle cx="70" cy="140" r="4" fill="var(--accent-lime)" />
+
+            <!-- Mouse Blueprint Outline -->
+            <g transform="translate(385, 80)">
+              <rect x="0" y="0" width="115" height="195" rx="55" fill="var(--deep-surface)" stroke="var(--hairline-border)" stroke-width="1.5" />
+              <!-- Split Button Seam -->
+              <line x1="57" y1="10" x2="57" y2="80" stroke="var(--hairline-border)" stroke-width="1.5" />
+              <!-- Scroll Wheel Assembly -->
+              <rect x="50" y="24" width="14" height="32" rx="4" fill="var(--signal-accent)" fill-opacity="0.4" stroke="var(--signal-accent)" stroke-width="1.5" />
+              <!-- Thumb Indent Blueprint Line -->
+              <path d="M 8 100 C 22 120, 22 150, 8 170" stroke="var(--hairline-border)" stroke-width="1.2" fill="none" stroke-dasharray="2 2" />
+              <!-- Optical Sensor Crosshair -->
+              <circle cx="57" cy="125" r="16" stroke="var(--signal-accent)" stroke-width="1" stroke-dasharray="3 3" />
+              <circle cx="57" cy="125" r="3" fill="var(--signal-accent)" />
+              <text x="12" y="180" fill="var(--muted-text)" font-family="monospace" font-size="8" letter-spacing="1">REF 01 // M1-OPT</text>
             </g>
-            <text x="40" y="290" fill="var(--text-muted)" font-family="monospace" font-size="12" letter-spacing="1">ARCH // TKL-87 &amp; M1-OPTICAL SYNTHESIS</text>
-            <circle cx="475" cy="285" r="4" fill="var(--accent-lime)" />
+
+            <!-- Technical Scale & Crosshairs -->
+            <line x1="30" y1="350" x2="130" y2="350" stroke="var(--hairline-border)" stroke-width="1" />
+            <line x1="30" y1="346" x2="30" y2="354" stroke="var(--hairline-border)" stroke-width="1" />
+            <line x1="130" y1="346" x2="130" y2="354" stroke="var(--hairline-border)" stroke-width="1" />
+            <text x="35" y="342" fill="var(--muted-text)" font-family="monospace" font-size="8">SCALE 1:1.5 STUDIO MM</text>
+
+            <circle cx="505" cy="35" r="4" fill="var(--signal-accent)" />
+            <text x="430" y="38" fill="var(--muted-text)" font-family="monospace" font-size="8" letter-spacing="1">CALIBRATED</text>
           </svg>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -213,33 +272,33 @@
   <main class="main-content" id="main-content">
     <div class="layout-grid">
       
-      <!-- Left Column: Product Catalogue & Shopping Cart -->
+      <!-- Left Column: Equipment Collection & Shopping Cart -->
       <div class="catalogue-column">
         
-        <!-- Product Collection Section -->
+        <!-- Equipment Collection Section -->
         <section class="catalogue-section" id="collection" aria-labelledby="catalogue-heading">
           <div class="section-header">
-            <div>
-              <span class="section-eyebrow">EQUIPMENT LINEUP</span>
+            <div class="section-title-group">
+              <span class="section-eyebrow">EQUIPMENT CATALOGUE // REF-2026</span>
               <h2 id="catalogue-heading">Available Hardware</h2>
             </div>
-            <span class="badge badge-subtle">Two Synthetic Units</span>
+            <span class="badge">Fixed Prototype Benchmarks</span>
           </div>
 
-          <!-- Product Cards Grid -->
+          <!-- Product Grid -->
           <div id="product-grid" class="product-grid" role="region" aria-label="Product Catalogue">
             <!-- Dynamic products injected here via app.js -->
           </div>
         </section>
 
-        <!-- Shopping Cart Section -->
+        <!-- Shopping Cart Section (On-page register) -->
         <section class="cart-section" id="cart-section" aria-labelledby="cart-heading">
           <div class="section-header">
-            <div>
-              <span class="section-eyebrow">YOUR EQUIPMENT TALLY</span>
+            <div class="section-title-group">
+              <span class="section-eyebrow">ORDER INVENTORY // ACTIVE REGISTER</span>
               <h2 id="cart-heading">Shopping Cart</h2>
             </div>
-            <span id="cart-item-count-badge-sub" class="badge">Active Cart</span>
+            <span id="cart-item-count-badge-sub" class="badge">Active Register</span>
           </div>
 
           <div id="cart-container" class="cart-container" role="region" aria-label="Cart Items">
@@ -254,25 +313,32 @@
         <aside class="sticky-sidebar">
           <section class="checkout-section" aria-labelledby="checkout-heading">
             <div class="section-header">
-              <div>
-                <span class="section-eyebrow">TRANSACTION REGISTER</span>
+              <div class="section-title-group">
+                <span class="section-eyebrow">TRANSACTION PROTOCOL // CLIENT GATE</span>
                 <h2 id="checkout-heading">Summary &amp; Checkout</h2>
               </div>
             </div>
 
             <!-- Order Summary Breakdown -->
             <div class="summary-card" aria-labelledby="summary-card-heading">
-              <h3 id="summary-card-heading" class="summary-title">Order Breakdown</h3>
+              <div class="summary-card-header">
+                <h3 id="summary-card-heading" class="summary-title">Order Ledger</h3>
+                <span class="ledger-code">LEDGER // 01</span>
+              </div>
+              
               <div id="summary-breakdown" class="summary-breakdown">
                 <div class="summary-empty-msg" id="summary-empty-msg">No items in cart</div>
               </div>
+              
               <div class="summary-divider"></div>
+              
               <div class="summary-row total-row">
-                <span class="total-label">Total Amount:</span>
+                <span class="total-label">Final Order Total:</span>
                 <span class="total-value" id="order-total" aria-live="polite">₹0</span>
               </div>
+              
               <div class="summary-row qty-row">
-                <span class="qty-label">Total Units:</span>
+                <span class="qty-label">Total Selected Units:</span>
                 <span class="qty-value" id="order-total-qty">0</span>
               </div>
             </div>
@@ -289,19 +355,16 @@
                     id="customer-name" 
                     name="customerName" 
                     class="form-input" 
-                    placeholder="e.g. Alex Morgan"
+                    placeholder="Enter full name (e.g. Alex Morgan)"
                     autocomplete="name"
                     aria-required="true"
                     aria-describedby="validation-message-area"
                   >
-                  <svg class="input-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
                 </div>
+                <span class="field-hint">Required for hardware order record creation.</span>
               </div>
 
-              <!-- Validation Messages Area -->
+              <!-- Validation Message Area -->
               <div 
                 id="validation-message-area" 
                 class="validation-message-area" 
@@ -311,18 +374,21 @@
                 <!-- Error messages injected here if validation fails -->
               </div>
 
-              <!-- Checkout Action Button -->
+              <!-- Checkout Action -->
               <button 
                 type="submit" 
                 id="place-order-btn" 
-                class="btn btn-primary btn-block btn-lg"
+                class="btn btn-signal btn-block btn-lg"
               >
                 <span>Place Order</span>
-                <svg class="btn-check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
               </button>
-              <p class="checkout-note">Synthetic test session. No real monetary transactions will occur.</p>
+              
+              <p class="checkout-disclaimer">
+                Synchronous client-side submission lock active. Pure integer rupee calculations.
+              </p>
             </form>
 
             <!-- Order Confirmation Area -->
@@ -333,7 +399,7 @@
               aria-label="Order Confirmation" 
               style="display: none;"
             >
-              <!-- Confirmation details injected here upon valid checkout -->
+              <!-- Confirmation receipt injected here upon valid checkout -->
             </div>
           </section>
         </aside>
@@ -342,22 +408,177 @@
     </div>
   </main>
 
+  <!-- Interactive Slide-Over Cart Drawer -->
+  <div id="cart-drawer-backdrop" class="drawer-backdrop" hidden aria-hidden="true"></div>
+  <aside 
+    id="cart-drawer" 
+    class="cart-drawer" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="cart-drawer-title" 
+    hidden
+  >
+    <div class="drawer-header">
+      <div class="drawer-header-left">
+        <span class="studio-tag">STUDIO REGISTER</span>
+        <h3 id="cart-drawer-title" class="drawer-title">Shopping Cart</h3>
+      </div>
+      <button 
+        type="button" 
+        id="cart-drawer-close" 
+        class="ctrl-btn drawer-close-btn" 
+        aria-label="Close cart drawer"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div id="drawer-cart-content" class="drawer-body">
+      <!-- Injected clone of cart items -->
+    </div>
+
+    <div class="drawer-footer">
+      <div class="drawer-total-row">
+        <span>Order Total:</span>
+        <span id="drawer-order-total" class="drawer-total-val">₹0</span>
+      </div>
+      <a href="#cart-section" id="drawer-proceed-btn" class="btn btn-signal btn-block">
+        Proceed to Checkout
+      </a>
+    </div>
+  </aside>
+
+  <!-- Product Inspection Modal / Drawer -->
+  <div id="product-modal-backdrop" class="modal-backdrop" hidden aria-hidden="true"></div>
+  <div 
+    id="product-modal" 
+    class="product-modal" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="modal-product-title" 
+    hidden
+  >
+    <div class="modal-content">
+      <button 
+        type="button" 
+        id="modal-close-btn" 
+        class="ctrl-btn modal-close-btn" 
+        aria-label="Close product inspection modal"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="modal-body-grid">
+        <!-- Visual Gallery Column -->
+        <div class="modal-visual-col">
+          <div class="modal-view-tabs" role="tablist" aria-label="Product Views">
+            <button type="button" class="view-tab active" data-view="three_quarter" role="tab" aria-selected="true">3/4 View</button>
+            <button type="button" class="view-tab" data-view="top" role="tab" aria-selected="false">Top View</button>
+            <button type="button" class="view-tab" data-view="detail" role="tab" aria-selected="false">Macro Detail</button>
+          </div>
+          
+          <div id="modal-image-display" class="modal-image-display" aria-live="polite">
+            <!-- Dynamically injected SVG view -->
+          </div>
+          <span class="view-caption" id="modal-view-caption">PERSPECTIVE: 3/4 ISOMETRIC STUDIO VIEW</span>
+        </div>
+
+        <!-- Specifications & Action Column -->
+        <div class="modal-info-col">
+          <div class="modal-header-block">
+            <span class="modal-product-code" id="modal-product-code">CODE //</span>
+            <h3 id="modal-product-title" class="modal-title">Product Title</h3>
+            <span class="modal-product-price" id="modal-product-price">₹0</span>
+          </div>
+
+          <p class="modal-description" id="modal-product-desc"></p>
+
+          <div class="modal-specs-block">
+            <span class="specs-heading">BENCHMARK SPECIFICATIONS [PROTOTYPE DEMO]</span>
+            <ul class="specs-grid" id="modal-specs-list">
+              <!-- Dynamically populated specs -->
+            </ul>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" id="modal-add-cart-btn" class="btn btn-signal btn-block">
+              Add to Order
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
   <!-- Screen Reader Live Announcer Region -->
   <div id="sr-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- Footer -->
+  <!-- Studio About & Engineering Philosophy Section -->
+  <section class="studio-about-section" id="studio-about" aria-labelledby="about-heading">
+    <div class="studio-about-container">
+      <div class="about-grid">
+        <div class="about-left">
+          <span class="studio-tag">DESIGN PHILOSOPHY</span>
+          <h3 id="about-heading" class="about-title">"Precision is a feeling."</h3>
+          <p class="about-text">
+            GameGear treats gaming peripherals as precision technical instruments. 
+            By calibrating actuation forces, eliminating wireless transmission latency, and rejecting decorative noise, 
+            each tool becomes an intuitive extension of player intent.
+          </p>
+        </div>
+        <div class="about-right">
+          <div class="pillar-card">
+            <span class="pillar-num">01 / DETERMINISTIC</span>
+            <h4 class="pillar-title">Integer Arithmetic</h4>
+            <p class="pillar-desc">All currency calculations occur strictly in integer rupees, preventing IEEE-754 floating point drift.</p>
+          </div>
+          <div class="pillar-card">
+            <span class="pillar-num">02 / RESILIENT</span>
+            <h4 class="pillar-title">Synchronous Guard</h4>
+            <p class="pillar-desc">Rapid repeated interactions are synchronously locked, eliminating race conditions or duplicate submissions.</p>
+          </div>
+          <div class="pillar-card">
+            <span class="pillar-num">03 / TRUTHFUL</span>
+            <h4 class="pillar-title">Verified Testing</h4>
+            <p class="pillar-desc">Every functional claim is corroborated by customer-visible Playwright browser automation assertions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Studio Footer -->
   <footer class="site-footer" role="contentinfo">
     <div class="footer-container">
-      <div class="footer-brand">
-        <span class="brand-logo sm" aria-hidden="true">GG</span>
-        <span class="footer-brand-name">GAMEGEAR 2.0</span>
+      <div class="footer-top-row">
+        <div class="footer-brand">
+          <span class="brand-badge sm" aria-hidden="true">GG</span>
+          <span class="footer-brand-title">GAMEGEAR // SIGNATURE EDITION</span>
+        </div>
+        <div class="footer-meta">
+          <span>FYND HIRING HACKATHON 2026 &bull; SDET INTERN TRACK</span>
+        </div>
       </div>
-      <p class="footer-text">&copy; 2026 GameGear Storefront &bull; Fynd Hiring Hackathon SDET Track Demonstration. Synthetic test data only.</p>
-      <div class="footer-tech">
-        <span>Vanilla JS &bull; Playwright &bull; Pytest &bull; CSS Custom Properties</span>
+      
+      <div class="footer-divider"></div>
+      
+      <div class="footer-bottom-row">
+        <p class="footer-copy">&copy; 2026 SUMANTRAJ-B &bull; MIT License &bull; Synthetic demonstrative data. Zero commercial transactions.</p>
+        <div class="footer-badges">
+          <span class="tech-pill">VANILLA JS</span>
+          <span class="tech-pill">PLAYWRIGHT</span>
+          <span class="tech-pill">PYTEST</span>
+          <span class="tech-pill">INTEGER RUPEES</span>
+        </div>
       </div>
     </div>
   </footer>
